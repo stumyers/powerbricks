@@ -1,0 +1,31 @@
+/*PTR Enc6Sine->PowerBrick[1].Chan[0].AdcEnc[0];
+PTR Enc6Cosine->PowerBrick[1].Chan[0].AdcEnc[1];
+GLOBAL Enc6SineOffset = 0, Enc6CosineOffset = 0;
+
+PowerBrick[1].Chan[1].AdcOffset[0] = Enc6SineOffset * 65536 // Channel 7 Sine Offset
+PowerBrick[1].Chan[1].AdcOffset[1] = Enc6CosineOffset * 65536 // Channel 7 Cosine Offset
+
+OPEN PLC SineCalPLC
+LOCAL SineCycles = 0;
+LOCAL MaxEnc6Sine, MaxEnc6Cosine, MinEnc6Sine, MinEnc6Cosine;
+
+WHILE(1)
+{
+    // ================== ENCODER 7 BIAS CORRECTIONS =================== //
+    IF (SineCycles == 0)
+    {
+    MaxEnc6Sine = Enc6Sine
+    MinEnc6Sine = Enc6Sine
+    MaxEnc6Cosine = Enc6Cosine
+    MinEnc6Cosine = Enc6Cosine
+    }
+    IF (Enc6Sine > MaxEnc6Sine){MaxEnc6Sine = Enc6Sine}
+    IF (Enc6Sine < MinEnc6Sine){MinEnc6Sine = Enc6Sine}
+    IF (Enc6Cosine > MaxEnc6Cosine){MaxEnc6Cosine = Enc6Cosine}
+    IF (Enc6Cosine < MinEnc6Cosine){MinEnc6Cosine = Enc6Cosine}
+    Enc6SineOffset = - (MaxEnc6Sine + MinEnc6Sine) / (2 * 65536)
+    Enc6CosineOffset = - (MaxEnc6Cosine + MinEnc6Cosine) / (2 * 65536)
+    // ================================================================= //
+    SineCycles++
+}
+CLOSE

@@ -1,0 +1,320 @@
+[PMAC_HARDWARE]
+[PMAC_CONFIG]
+Loading PMAC Defaults ($$$***) Configuration
+[PMAC_PROJECT]
+[PMAC_CONFIG]
+[PMAC_PROJECT]
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:4:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:7:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:13:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:22:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:14:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:15:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:16:1: warning: "GATE" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:7:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:17:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:18:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:25:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:13:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:26:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:28:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:30:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:13:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:31:1: warning: "JOG_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:23:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:33:1: warning: "MAX_ACCEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:24:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:35:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:14:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:15:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:17:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:18:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:24:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:25:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:25:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:26:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:27:1: warning: "CTS_PER_REV" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:16:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:28:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:28:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:32:1: warning: "HOME_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:32:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:35:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:35:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:15:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:16:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:18:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:19:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:21:1: warning: "ECL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:20:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:22:1: warning: "RES" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:21:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:26:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:24:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:27:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:25:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:29:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:28:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:31:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:30:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:32:1: warning: "JOG_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:31:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:33:1: warning: "HOME_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:32:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:36:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:35:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:4:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:5:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:16:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:7:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:8:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:19:1: warning: this is the location of the previous definition
+[PMAC_PROJECT]
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:4:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:7:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:13:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:22:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:14:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:15:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:16:1: warning: "GATE" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:7:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:17:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:18:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:25:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:13:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:26:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:28:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:30:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:13:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:31:1: warning: "JOG_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:23:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:33:1: warning: "MAX_ACCEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:24:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:35:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:14:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:15:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:17:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:18:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:24:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:25:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:25:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:26:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:27:1: warning: "CTS_PER_REV" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:16:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:28:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:28:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:32:1: warning: "HOME_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:32:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:35:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:35:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:15:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:16:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:18:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:19:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:21:1: warning: "ECL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:20:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:22:1: warning: "RES" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:21:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:26:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:24:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:27:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:25:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:29:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:28:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:31:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:30:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:32:1: warning: "JOG_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:31:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:33:1: warning: "HOME_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:32:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:36:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:35:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:4:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:5:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:16:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:7:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:8:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:19:1: warning: this is the location of the previous definition
+[PMAC_PROJECT]
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:4:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:7:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:13:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:22:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:5:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:6:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:8:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:9:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:14:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:5:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:15:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:6:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:16:1: warning: "GATE" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:7:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:17:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:8:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:18:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:9:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:25:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:13:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:26:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:28:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:30:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh:13:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:31:1: warning: "JOG_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:23:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:33:1: warning: "MAX_ACCEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:24:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:35:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:14:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:15:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:17:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:18:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:24:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:25:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:25:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:26:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:27:1: warning: "CTS_PER_REV" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-spindle.pmh:16:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:28:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:28:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:32:1: warning: "HOME_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:32:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:35:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:35:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:15:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:14:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:16:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:18:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:17:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:19:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:21:1: warning: "ECL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:20:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:22:1: warning: "RES" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh:21:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:26:1: warning: "PEAK_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:24:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:27:1: warning: "CONT_CURR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:25:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:29:1: warning: "CTS_PER_UNIT" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:28:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:31:1: warning: "MAX_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:30:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:32:1: warning: "JOG_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:31:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:33:1: warning: "HOME_SPEED" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:32:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:36:1: warning: "PHASING_TIME" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh:35:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:4:1: warning: "MOTOR" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:15:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:5:1: warning: "ENCODER" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:16:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:7:1: warning: "CHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:18:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh:8:1: warning: "LVCHANNEL" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh:19:1: warning: this is the location of the previous definition

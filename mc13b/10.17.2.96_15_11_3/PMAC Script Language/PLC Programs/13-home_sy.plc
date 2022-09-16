@@ -1,0 +1,22 @@
+open plc HomeSYPLC
+
+// Do manual phasing
+Motor[6].IbBias = 2000
+cmd"#6out0"
+call timer(1)
+Motor[6].PhasePos = 0
+kill 6
+Motor[6].IbBias = 0
+Motor[6].PhaseFound = 1
+
+// Home to the bottom end stop
+jog-6
+while(Motor[6].FeFatal==0) {}
+
+call timer(0.5)
+
+// Home to rotary ref mark
+home 6
+
+disable plc HomeSYPLC
+close

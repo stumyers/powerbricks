@@ -1,0 +1,16 @@
+Motor[6].MaxDac = 6.5 * SQRT(2) * 32768 * COSD(30) / 33.85 
+Motor[6].I2TSet = 1.6 * SQRT(2) * 32768 * COSD(30) / 33.85
+Motor[6].I2tTrip = (POW(Motor[6].MaxDac,2) - POW(Motor[1].I2TSet,2)) * 1
+
+
+L0 = SQRT(POW(Motor[6].IqMeas,2) + POW(Motor[6].IdMeas,2)) * 33.85 / (32768 * SQRT(2) * COSD(30)) L0
+
+Motor[6].PhasePosSf = 2048 * 4 / (1000 * 16384)
+PowerBrick[1].Chan[1].EncCtrl = 7
+
+Motor[6].JogTa = 0
+Motor[6].JogTs = 250
+Motor[6].JogSpeed = 250
+
+
+

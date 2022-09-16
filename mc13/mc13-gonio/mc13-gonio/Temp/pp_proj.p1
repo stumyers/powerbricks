@@ -1,0 +1,1528 @@
+#line 1 "/var/ftp/usrflash/Project/Configuration/pp_disable.txt"
+
+&*A 
+disable plc 0..31 
+clear all buffers
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define MAX_ADC 33.85     
+
+
+Sys.pAbortAll = 0
+
+
+Sys.WpKey = $AAAAAAAA
+
+
+Sys.MaxMotors = 16 
+Sys.MaxCoords = 4 
+
+
+Gate3[0].PhaseFreq = 10000.000
+Gate3[1].PhaseFreq = 10000.000
+
+
+
+Gate3[0].ServoClockDiv = 1
+Gate3[1].ServoClockDiv = 1
+
+
+
+Gate3[0].EncClockDiv = 1
+Gate3[1].EncClockDiv = 1 
+
+
+
+Gate3[0].PfmClockDiv = 2
+Gate3[1].PfmClockDiv = 2
+
+
+Sys.ServoPeriod = 1000*(Gate3[0].ServoClockDiv+1)/Gate3[0].PhaseFreq
+Sys.PhaseOverServoPeriod = 1/(Gate3[0].ServoClockDiv+1)
+Sys.RtIntPeriod = 0 
+
+
+Gate3[0].Chan[0].PackInData = 0
+Gate3[0].Chan[1].PackInData = 0
+Gate3[0].Chan[2].PackInData = 0
+Gate3[0].Chan[3].PackInData = 0
+Gate3[1].Chan[0].PackInData = 0
+Gate3[1].Chan[1].PackInData = 0
+Gate3[1].Chan[2].PackInData = 0
+Gate3[1].Chan[3].PackInData = 0
+
+Gate3[0].Chan[0].PackOutData = 0
+Gate3[0].Chan[1].PackOutData = 0
+Gate3[0].Chan[2].PackOutData = 0
+Gate3[0].Chan[3].PackOutData = 0
+Gate3[1].Chan[0].PackOutData = 0
+Gate3[1].Chan[1].PackOutData = 0
+Gate3[1].Chan[2].PackOutData = 0
+Gate3[1].Chan[3].PackOutData = 0
+
+
+
+
+
+
+
+
+
+
+
+&1
+&1#1->B // Shutter
+&1#5->X // Stack X
+&1#8->A // Omega
+
+Coord[1].FeedTime = 1 
+
+
+
+
+#define VecState P8192
+#line 77 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecRunning P8193
+#line 78 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+
+#define VecGo P8194
+#line 81 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecProceed P8195
+#line 82 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecAbort P8196
+#line 83 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+
+#define VecExpose P8197
+#line 86 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecHold P8198
+#line 87 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecSetupGather P8199
+#line 88 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+#define VecNumSamples P8200
+#line 90 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecExposure P8201
+#line 91 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecDataAcqDuration P8202
+#line 92 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+#define VecShutChgPos P8203
+#line 94 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecShutTime P8204
+#line 95 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecBufferTime P8205
+#line 96 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecMaxTimeToSpeed P8206
+#line 97 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+#define VecTooFast(x) P(8207+x)
+#line 99 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecStartPos(x) P(8211+x)
+#line 100 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecEndPos(x) P(8215+x)
+#line 101 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecAccel(x) P(8219+x)
+#line 102 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecDataAcqDist(x) P(8223+x)
+#line 103 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecDesSpeed(x) P(8227+x)
+#line 104 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecTimeToSpeed(x) P(8231+x)
+#line 105 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecDir(x) P(8235+x)
+#line 106 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecSpeedUpDist(x) P(8239+x)
+#line 107 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecBufferDist(x) P(8243+x)
+#line 108 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecShutOpenDist(x) P(8247+x)
+#line 109 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecShutLagDist(x) P(8251+x)
+#line 110 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define VecBackUpDist(x) P(8255+x)
+#line 111 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+#define ShutterOpenPos P8259
+#line 113 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define ShutterClosedPos P8260
+#line 114 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+#define ShutterSpeed P8261
+ShutterSpeed = 4561.35
+#line 116 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#define ShutterLag P8262
+ShutterLag = -0.07
+#line 117 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+
+#define MotorIdleTime(x) P(8263+x)
+#line 120 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+
+#define HomeGonioState P8271
+#line 122 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh"
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh"
+
+
+
+
+#define DAC1X9 M8192
+#line 6 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh"
+DAC1X9-> S.IO:$90004C.16.16
+#line 6 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh"
+#define ADC1X9 M8193
+#line 7 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh"
+ADC1X9-> S.IO:$900028.16.16
+#line 7 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh"
+
+PowerBrick[0].Chan[0].OutputMode = 7
+PowerBrick[0].Chan[0].PwmFreqMult = 7 
+
+Motor[1].ServoCtrl = 1
+Motor[1].PhaseCtrl = 0
+Motor[1].Ctrl = Sys.PosCtrl
+Motor[1].pDac = PowerBrick[0].Chan[0].Pfm.a
+Motor[1].PosSf = 1/exp2(16)
+Motor[1].pAbsPos = PowerBrick[0].Chan[0].AdcAmp[2].a
+Motor[1].AbsPosFormat = $00001010 
+Motor[1].FatalFeLimit = 0
+Motor[1].WarnFeLimit = 0
+Motor[1].pLimits = 0
+Motor[1].pAmpFault = 0
+Motor[1].JogTa = 0
+Motor[1].JogTs = 0
+Motor[1].InvAmax = 0
+Motor[1].InvDmax = 0
+Motor[1].InvJmax = 0
+Motor[1].JogSpeed = 1e9
+Motor[1].MaxSpeed = Motor[1].JogSpeed
+Motor[1].MinPos = -13380
+Motor[1].MaxPos = 13380
+Motor[1].InPosBand = 6000
+
+EncTable[1].type = 1
+EncTable[1].pEnc = PowerBrick[0].Chan[0].AdcAmp[2].a
+EncTable[1].MaxDelta = 0
+EncTable[1].index1 = 16
+EncTable[1].index2 = 16
+EncTable[1].index3 = 0
+EncTable[1].index4 = 0
+
+
+EncTable[1].ScaleFactor = 1/1.747
+Motor[1].AbsPosSf = 1/exp2(16)/1.747
+Motor[1].DacBias = -458/1.747
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh"
+
+
+
+
+#define MAX_FREQ 4900000   
+#define STEP_INC 10        
+#define MAX_SPEED 4         
+#define MIN_POS -4        
+#define MAX_POS 4         
+
+
+
+PowerBrick[0].Chan[1].PwmFreqMult = 1
+PowerBrick[0].Chan[1].TimerMode = 3 
+PowerBrick[0].Chan[1].EncCtrl = 3 
+PowerBrick[0].Chan[1].PfmWidth = 4 
+PowerBrick[0].Chan[1].OutputMode = 8 
+PowerBrick[0].Chan[1].OutFlagD = 1 
+PowerBrick[0].Chan[1].PfmFormat = 0 
+PowerBrick[0].Chan[1].OutputPol = 2 
+PowerBrick[0].Chan[1].PfmDirPol = 1 
+PowerBrick[0].Chan[1].CaptCtrl = 1 
+PowerBrick[0].Chan[1].PackOutData = 0
+PowerBrick[0].Chan[1].PackInData = 0
+
+Motor[2].ServoCtrl = 1 
+Motor[2].PhaseCtrl = 0 
+Motor[2].MaxSpeed = MAX_SPEED*1000/STEP_INC 
+Motor[2].JogSpeed = Motor[2].MaxSpeed
+Motor[2].HomeVel = Motor[2].MaxSpeed*0.8
+Motor[2].InvAMax = 0.1
+Motor[2].InvDMax = Motor[2].InvAMax
+Motor[2].JogTa = 10
+Motor[2].JogTs = 0
+Motor[2].pLimits = 0 
+Motor[2].pAmpFault = 0 
+Motor[2].pEncLoss = 0 
+Motor[2].I2tSet = 0 
+Motor[2].I2tTrip = 0
+Motor[2].MaxDac = MAX_FREQ*pow(2, 16+PowerBrick[0].PfmClockDiv)/pow(10, 8)
+Motor[2].pDac = PowerBrick[0].Chan[1].Pfm.a
+Motor[2].EncType = 5 
+Motor[2].pEnc = EncTable[2].a
+Motor[2].pEnc2 = EncTable[2].a
+Motor[2].PosSf = 1
+Motor[2].Pos2Sf = 1
+Motor[2].CaptureMode = 0 
+Motor[2].MinPos = MIN_POS*1000000/STEP_INC
+Motor[2].MaxPos = MAX_POS*1000000/STEP_INC
+Motor[2].HomeVel = Motor[2].MaxSpeed
+
+Motor[2].Servo.Kp = 0.15
+Motor[2].Servo.Kvfb = 0
+Motor[2].Servo.Kvff = 0
+Motor[2].Servo.Ki = 0
+Motor[2].Servo.Kaff = 0
+Motor[2].Servo.BreakPosErr = 1 
+Motor[2].Servo.Kbreak = 0 
+Motor[2].Servo.OutDbOn = 0
+Motor[2].Servo.OutDbOff = 0
+Motor[2].Servo.OutDbSeed = 0
+Motor[2].InPosBand = 2
+Motor[2].FatalFeLimit = 10000
+
+EncTable[2].type = 1 
+EncTable[2].pEnc = PowerBrick[0].Chan[1].ServoCapt.a
+EncTable[2].MaxDelta = 0
+EncTable[2].index1 = 0
+EncTable[2].index2 = 0
+EncTable[2].index3 = 0
+EncTable[2].index4 = 0
+EncTable[2].ScaleFactor = 1/256
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh"
+
+
+
+
+#define PY_MAX_FREQ 4900000   
+#define PY_STEP_INC 10        
+#define PY_MAX_SPEED 4         
+#define PY_MIN_POS -4        
+#define PY_MAX_POS 4         
+
+
+
+PowerBrick[0].Chan[2].PwmFreqMult = 1
+PowerBrick[0].Chan[2].TimerMode = 3 
+PowerBrick[0].Chan[2].EncCtrl = 3 
+PowerBrick[0].Chan[2].PfmWidth = 4 
+PowerBrick[0].Chan[2].OutputMode = 8 
+PowerBrick[0].Chan[2].OutFlagD = 1 
+PowerBrick[0].Chan[2].PfmFormat = 0 
+PowerBrick[0].Chan[2].OutputPol = 2 
+PowerBrick[0].Chan[2].PfmDirPol = 1 
+PowerBrick[0].Chan[2].CaptCtrl = 1 
+PowerBrick[0].Chan[2].PackOutData = 0
+PowerBrick[0].Chan[2].PackInData = 0
+
+Motor[3].ServoCtrl = 1 
+Motor[3].PhaseCtrl = 0 
+Motor[3].MaxSpeed = PY_MAX_SPEED*1000/PY_STEP_INC 
+Motor[3].JogSpeed = Motor[3].MaxSpeed
+Motor[3].HomeVel = Motor[3].MaxSpeed*0.8
+Motor[3].pLimits = 0 
+Motor[3].pAmpFault = 0 
+Motor[3].pEncLoss = 0 
+Motor[3].I2tSet = 0 
+Motor[3].I2tTrip = 0
+Motor[3].MaxDac = PY_MAX_FREQ*pow(2, 16+PowerBrick[0].PfmClockDiv)/pow(10, 8)
+Motor[3].pDac = PowerBrick[0].Chan[2].Pfm.a
+Motor[3].EncType = 5 
+Motor[3].pEnc = EncTable[3].a
+Motor[3].pEnc2 = EncTable[3].a
+Motor[3].PosSf = 1
+Motor[3].Pos2Sf = 1
+Motor[3].CaptureMode = 0 
+Motor[3].MinPos = PY_MIN_POS*1000000/PY_STEP_INC
+Motor[3].MaxPos = PY_MAX_POS*1000000/PY_STEP_INC
+Motor[3].HomeVel = Motor[3].MaxSpeed
+Motor[3].AbortTa = 0
+
+Motor[3].Servo.Kp = 0.15
+Motor[3].Servo.Kvfb = 0
+Motor[3].Servo.Kvff = 13
+Motor[3].Servo.Ki = 0
+Motor[3].Servo.Kaff = 0
+Motor[3].Servo.BreakPosErr = 1 
+Motor[3].Servo.Kbreak = 0 
+Motor[3].Servo.OutDbOn = 0
+Motor[3].Servo.OutDbOff = 0
+Motor[3].Servo.OutDbSeed = 0
+Motor[3].InPosBand = 2
+Motor[3].FatalFeLimit = 10000
+
+EncTable[3].type = 1 
+EncTable[3].pEnc = PowerBrick[0].Chan[2].ServoCapt.a
+EncTable[3].MaxDelta = 0
+EncTable[3].index1 = 0
+EncTable[3].index2 = 0
+EncTable[3].index3 = 0
+EncTable[3].index4 = 0
+EncTable[3].ScaleFactor = 1/256
+
+Motor[3].JogTa = -2.5e-4
+Motor[3].JogTs = 0
+Motor[3].AbortTa = Motor[3].JogTa
+Motor[3].InvAMax = -Motor[3].JogTa
+Motor[3].InvDMax = -Motor[3].JogTa
+Motor[3].InvJmax = 0
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh"
+
+
+
+
+#define PZ_MAX_FREQ 4900000   
+#define PZ_STEP_INC 10        
+#define PZ_MAX_SPEED 4         
+#define PZ_MIN_POS -4        
+#define PZ_MAX_POS 4         
+
+
+
+PowerBrick[0].Chan[3].PwmFreqMult = 1
+PowerBrick[0].Chan[3].TimerMode = 3 
+PowerBrick[0].Chan[3].EncCtrl = 3 
+PowerBrick[0].Chan[3].PfmWidth = 4 
+PowerBrick[0].Chan[3].OutputMode = 8 
+PowerBrick[0].Chan[3].OutFlagD = 1 
+PowerBrick[0].Chan[3].PfmFormat = 0 
+PowerBrick[0].Chan[3].OutputPol = 2 
+PowerBrick[0].Chan[3].PfmDirPol = 1 
+PowerBrick[0].Chan[3].CaptCtrl = 1 
+PowerBrick[0].Chan[3].PackOutData = 0
+PowerBrick[0].Chan[3].PackInData = 0
+
+Motor[4].ServoCtrl = 1 
+Motor[4].PhaseCtrl = 0 
+Motor[4].MaxSpeed = PZ_MAX_SPEED*1000/PZ_STEP_INC 
+Motor[4].JogSpeed = Motor[4].MaxSpeed
+Motor[4].HomeVel = Motor[4].MaxSpeed*0.8
+Motor[4].InvAMax = 0.1
+Motor[4].InvDMax = Motor[4].InvAMax
+Motor[4].JogTa = 10
+Motor[4].JogTs = 0
+Motor[4].pLimits = 0 
+Motor[4].pAmpFault = 0 
+Motor[4].pEncLoss = 0 
+Motor[4].I2tSet = 0 
+Motor[4].I2tTrip = 0
+Motor[4].MaxDac = PZ_MAX_FREQ*pow(2, 16+PowerBrick[0].PfmClockDiv)/pow(10, 8)
+Motor[4].pDac = PowerBrick[0].Chan[3].Pfm.a
+Motor[4].EncType = 5 
+Motor[4].pEnc = EncTable[4].a
+Motor[4].pEnc2 = EncTable[4].a
+Motor[4].PosSf = 1
+Motor[4].Pos2Sf = 1
+Motor[4].CaptureMode = 0 
+Motor[4].MinPos = PZ_MIN_POS*1000000/PZ_STEP_INC
+Motor[4].MaxPos = PZ_MAX_POS*1000000/PZ_STEP_INC
+Motor[4].HomeVel = Motor[4].MaxSpeed
+Motor[4].AbortTa = 0
+
+Motor[4].Servo.Kp = 0.15
+Motor[4].Servo.Kvfb = 0
+Motor[4].Servo.Kvff = 13
+Motor[4].Servo.Ki = 0
+Motor[4].Servo.Kaff = 0
+Motor[4].Servo.BreakPosErr = 1 
+Motor[4].Servo.Kbreak = 0 
+Motor[4].Servo.OutDbOn = 0
+Motor[4].Servo.OutDbOff = 0
+Motor[4].Servo.OutDbSeed = 0
+Motor[4].InPosBand = 2
+Motor[4].FatalFeLimit = 10000
+
+EncTable[4].type = 1 
+EncTable[4].pEnc = PowerBrick[0].Chan[3].ServoCapt.a
+EncTable[4].MaxDelta = 0
+EncTable[4].index1 = 0
+EncTable[4].index2 = 0
+EncTable[4].index3 = 0
+EncTable[4].index4 = 0
+EncTable[4].ScaleFactor = 1/256
+
+Motor[4].JogTa = -2.5e-4
+Motor[4].JogTs = 0
+Motor[4].AbortTa = Motor[4].JogTa
+Motor[4].InvAMax = -Motor[4].JogTa
+Motor[4].InvDMax = -Motor[4].JogTa
+Motor[4].InvJmax = 0
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh"
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define SX_ECL 50              
+#define SX_CTS_PER_MM 250             
+#define SX_ENC_SCALE 2000            
+#define SX_CTS_PER_ECL (SX_ECL*SX_CTS_PER_MM*16384)
+#define SX_CTS_PER_UNIT (SX_CTS_PER_MM*SX_ENC_SCALE)  
+
+#define SX_PEAK_CURR 16.40     
+#define SX_CONT_CURR 2.83      
+#define SX_TIME_AT_PEAK 1         
+
+
+#define SX_MAX_SPEED 10        
+#define SX_JOG_SPEED 8         
+#define SX_HOME_SPEED -1        
+#define SX_MAX_ACCEL 10        
+
+#define SX_PHASING_TIME 50        
+
+
+
+
+
+
+
+
+
+
+
+
+
+PowerBrick[1].Chan[0].PwmFreqMult = 2
+
+
+BrickLV.Chan[4].TwoPhaseMode = 0 
+
+
+Motor[5].pLimits = 0 
+Motor[5].AdcMask = $FFFC0000 
+Motor[5].AmpFaultLevel = 1
+Motor[5].PhaseCtrl = 4 
+Motor[5].PhaseOffset = -683 
+
+
+EncTable[5].ScaleFactor = SX_ENC_SCALE/16384
+Motor[5].EncType = 6
+PowerBrick[1].Chan[0].AtanEna = 1
+Motor[5].PhasePosSf = -2048/SX_CTS_PER_ECL 
+
+
+Motor[5].PwmSf = -0.95*16384 
+
+
+
+
+Motor[5].MaxDac = SX_PEAK_CURR / MAX_ADC * 32767 * 0.866 
+Motor[5].I2TSet = SX_CONT_CURR / MAX_ADC * 32767 * 0.866 
+Motor[5].I2tTrip = (POW(Motor[5].MaxDac,2) - POW(Motor[5].I2TSet,2)) * SX_TIME_AT_PEAK 
+Motor[5].WarnFeLimit = 16000
+Motor[5].FatalFeLimit = 32000
+Motor[5].InPosBand = 1000
+
+
+Motor[5].PhaseFindingTime = SX_PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+Motor[5].PhaseFindingDac = 3.5 * Motor[5].I2TSet / 4
+Motor[5].AbsPhasePosOffset = 2048 / 5
+
+
+Motor[5].IiGain = 1.6
+Motor[5].IpfGain = 3
+
+
+
+
+
+
+
+
+
+
+
+
+Motor[5].Servo.Kp = 0.5
+Motor[5].Servo.Kvfb = 3.9
+Motor[5].Servo.Kvifb = 0
+Motor[5].Servo.Ki = 0.001
+Motor[5].Servo.Kvff = 4
+Motor[5].Servo.Kviff = 0
+Motor[5].Servo.Kaff = 0
+Motor[5].Servo.Kfff = 0
+
+
+Motor[5].MaxSpeed = SX_MAX_SPEED*SX_CTS_PER_UNIT/1000 
+Motor[5].JogSpeed = SX_JOG_SPEED*SX_CTS_PER_UNIT/1000 
+Motor[5].HomeVel = -SX_JOG_SPEED*SX_CTS_PER_UNIT/1000 
+Motor[5].InvAMax = 1000000/(SX_MAX_ACCEL*SX_CTS_PER_UNIT) 
+Motor[5].InvDMax = Motor[5].InvAMax
+Motor[5].JogTa = -Motor[5].InvAMax 
+Motor[5].JogTs = 0
+Motor[5].AbortTa = 0
+
+
+Motor[5].ServoCtrl = 1
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh"
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define SY_POLE_PAIRS 4         
+
+#define SY_PEAK_CURR 9.2       
+#define SY_CONT_CURR 2.3       
+#define SY_TIME_AT_PEAK 1         
+#define SY_CTS_PER_REV 2000000   
+#define SY_CTS_PER_UNIT 500       
+
+#define SY_MAX_SPEED 10        
+#define SY_JOG_SPEED 8         
+#define SY_HOME_SPEED 4         
+#define SY_MAX_ACCEL 1000      
+
+#define SY_PHASING_TIME 5000      
+
+
+
+
+
+
+
+
+
+
+
+
+
+PowerBrick[1].Chan[1].PwmFreqMult = 3
+
+
+BrickLV.Chan[5].TwoPhaseMode = 0 
+
+
+Motor[6].pLimits = 0 
+Motor[6].AdcMask = $FFFC0000 
+Motor[6].AmpFaultLevel = 1
+Motor[6].PhaseCtrl = 4 
+Motor[6].PhaseOffset = 683 
+
+
+
+EncTable[6].ScaleFactor = 1
+Motor[6].EncType = 6
+PowerBrick[1].Chan[1].AtanEna = 1
+
+Motor[6].PwmSf = 0.95*16384 
+PowerBrick[1].Chan[1].EncCtrl = 7
+
+
+Motor[6].MaxDac = SY_PEAK_CURR * SQRT(2) * 32768 * COSD(30) / MAX_ADC
+Motor[6].I2TSet = SY_CONT_CURR * SQRT(2) * 32768 * COSD(30) / MAX_ADC
+Motor[6].I2tTrip = (POW(Motor[6].MaxDac,2) - POW(Motor[6].I2TSet,2)) * SY_TIME_AT_PEAK 
+Motor[6].WarnFeLimit = 16000
+Motor[6].FatalFeLimit = 32000
+Motor[6].InPosBand = 1000
+
+
+Motor[6].PhasePosSf = 2048 * SY_POLE_PAIRS/(1000 * 16384)
+Motor[6].PhaseFindingTime = 0
+Motor[6].PhaseFindingDac = 0
+Motor[6].AbsPhasePosOffset = 2048 / 5
+
+
+Motor[6].IiGain = 1.8
+Motor[6].IpfGain = 1.8
+Motor[6].IpbGain = 0
+
+
+Motor[6].Servo.Kp = 0.045
+Motor[6].Servo.Kvfb = 0.15
+Motor[6].Servo.Kvifb = 0
+Motor[6].Servo.Ki = 0.02
+Motor[6].Servo.Kvff = 0
+Motor[6].Servo.Kviff = 0
+Motor[6].Servo.Kaff = 0
+Motor[6].Servo.Kfff = 0
+
+
+Motor[6].MaxSpeed = SY_MAX_SPEED*SY_CTS_PER_UNIT/1000 
+Motor[6].JogSpeed = SY_JOG_SPEED*SY_CTS_PER_UNIT/1000 
+Motor[6].HomeVel = SY_HOME_SPEED*SY_CTS_PER_UNIT/1000 
+Motor[6].InvAMax = 1000000/(SY_MAX_ACCEL*SY_CTS_PER_UNIT) 
+Motor[6].InvDMax = Motor[6].InvAMax
+Motor[6].JogTa = 0
+Motor[6].JogTs = 250
+
+Motor[6].JogSpeed = 4000
+Motor[6].HomeVel = Motor[6].JogSpeed
+
+
+Motor[6].ServoCtrl = 1
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define SZ_ECL 60.96           
+#define SZ_CTS_PER_MM 50              
+#define SZ_ENC_SCALE 2000            
+#define SZ_CTS_PER_ECL (SZ_ECL*SZ_CTS_PER_MM*16384)
+#define SZ_CTS_PER_UNIT (SZ_CTS_PER_MM*SZ_ENC_SCALE)  
+
+#define SZ_PEAK_CURR 13.75     
+#define SZ_CONT_CURR 2.19      
+#define SZ_TIME_AT_PEAK 1         
+
+#define SZ_MAX_SPEED 5         
+#define SZ_JOG_SPEED 4         
+#define SZ_HOME_SPEED -0.4      
+#define SZ_MAX_ACCEL 1000      
+
+#define SZ_PHASING_TIME 50        
+
+
+
+
+
+
+
+
+
+
+
+
+
+PowerBrick[1].Chan[2].PwmFreqMult = 0
+
+
+BrickLV.Chan[6].TwoPhaseMode = 0 
+
+
+Motor[7].pLimits = 0 
+Motor[7].AdcMask = $FFFC0000 
+Motor[7].AmpFaultLevel = 1
+Motor[7].PhaseCtrl = 4 
+Motor[7].PhaseOffset = -683 
+
+
+EncTable[7].ScaleFactor = SZ_ENC_SCALE/16384
+Motor[7].EncType = 6
+PowerBrick[1].Chan[2].AtanEna = 1
+Motor[7].PhasePosSf = 2048/SZ_CTS_PER_ECL 
+Motor[7].PwmSf = -0.95*16384 
+Gate3[1].Chan[2].EncCtrl = 3
+
+
+Motor[7].MaxDac = SZ_PEAK_CURR / MAX_ADC * 32767 * 0.866 
+Motor[7].I2TSet = SZ_CONT_CURR / MAX_ADC * 32767 * 0.866 
+Motor[7].I2tTrip = (POW(Motor[7].MaxDac,2) - POW(Motor[7].I2TSet,2)) * SZ_TIME_AT_PEAK 
+Motor[7].WarnFeLimit = 16000
+Motor[7].FatalFeLimit = 32000
+Motor[7].InPosBand = 1000
+
+
+Motor[7].PhaseFindingTime = SZ_PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+Motor[7].PhaseFindingDac = Motor[7].I2TSet / 2
+Motor[7].AbsPhasePosOffset = 2048 / 5
+
+
+Motor[7].IiGain = 2.1
+Motor[7].IpfGain = 4.9
+
+
+Motor[7].Servo.Kp = 0.25
+Motor[7].Servo.Kvfb = 2.2274342
+Motor[7].Servo.Kvifb = 0
+Motor[7].Servo.Ki = 0.005 
+Motor[7].Servo.Kvff = 4.1
+Motor[7].Servo.Kviff = 0
+Motor[7].Servo.Kaff = 170
+Motor[7].Servo.Kfff = 0
+
+
+Motor[7].Servo.Ke1 = -0.443141453020698017
+
+
+Motor[7].MaxSpeed = SZ_MAX_SPEED*SZ_CTS_PER_UNIT/1000 
+Motor[7].JogSpeed = SZ_JOG_SPEED*SZ_CTS_PER_UNIT/1000 
+Motor[7].HomeVel = SZ_HOME_SPEED*SZ_CTS_PER_UNIT/1000 
+Motor[7].InvAMax = 1000000/(SZ_MAX_ACCEL*SZ_CTS_PER_UNIT) 
+Motor[7].InvDMax = Motor[7].InvAMax
+Motor[7].JogTa = -Motor[7].InvAMax 
+Motor[7].JogTs = 0
+Motor[7].HomeVel = -Motor[7].JogSpeed
+
+
+Motor[7].ServoCtrl = 1
+
+
+PowerBrick[1].Chan[2].AdcOffset[0] = -107151360
+PowerBrick[1].Chan[2].AdcOffset[1] = -131661824
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-spindle.pmh"
+
+
+
+#define O_POLES 48
+
+#define O_PEAK_CURR 9       
+#define O_CONT_CURR 3       
+#define O_TIME_AT_PEAK 1       
+#define O_CTS_PER_REV (1024*20250)
+#define O_CTS_PER_UNIT (O_CTS_PER_REV/360)    
+#define O_PHASING_TIME 5000    
+
+
+
+#define O_MAX_SPEED 240    
+#define O_JOG_SPEED 200    
+#define O_MAX_ACCEL 960    
+
+
+
+
+
+
+
+
+
+
+
+PowerBrick[1].Chan[3].PwmFreqMult = 5
+
+PowerBrick[1].Chan[3].EncCtrl = 7
+
+
+BrickLV.Chan[7].TwoPhaseMode = 0 
+
+
+Motor[8].pLimits = 0 
+Motor[8].AdcMask = $FFFC0000 
+Motor[8].AmpFaultLevel = 1
+Motor[8].PhaseCtrl = 4 
+Motor[8].PhaseOffset = 683 
+Motor[8].PwmSf = 0.95*16384 
+
+
+Motor[8].MaxDac = O_PEAK_CURR / MAX_ADC * 32767 * 0.866 
+Motor[8].I2TSet = O_CONT_CURR / MAX_ADC * 32767 * 0.866 
+Motor[8].I2tTrip = (POW(Motor[8].MaxDac,2) - POW(Motor[8].I2TSet,2)) * O_TIME_AT_PEAK 
+Motor[8].WarnFeLimit = 16000
+Motor[8].FatalFeLimit = 32000
+Motor[8].InPosBand = 1000
+
+
+Motor[8].PhasePosSf = 2048*(O_POLES/2)/(256*O_CTS_PER_REV) 
+Motor[8].PhaseFindingTime = O_PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+Motor[8].PhaseFindingDac = 3 * Motor[8].I2TSet / 4
+Motor[8].AbsPhasePosOffset = 2048 / 5
+
+
+Motor[8].IiGain = 3
+Motor[8].IpfGain = 3
+
+
+#line 71 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-spindle.pmh"
+
+
+
+#line 81 "/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-spindle.pmh"
+
+
+
+
+
+Motor[8].Servo.Kp = 1
+Motor[8].Servo.Kvfb = 40
+Motor[8].Servo.Kvifb = 0
+Motor[8].Servo.Ki = 0.05
+Motor[8].Servo.Kvff = 40
+Motor[8].Servo.Kviff = 0
+Motor[8].Servo.Kaff = 200
+Motor[8].Servo.Kfff = 50
+
+
+Motor[8].MaxSpeed = O_MAX_SPEED*O_CTS_PER_UNIT/1000 
+Motor[8].JogSpeed = O_JOG_SPEED*O_CTS_PER_UNIT/1000 
+Motor[8].JogTa = -0.005 
+Motor[8].JogTa = -0.1
+Motor[8].JogTa = -0.02 
+Motor[8].AbortTa = Motor[8].JogTa
+Motor[8].JogTs = 0
+Motor[8].InvAMax = -Motor[8].JogTa
+Motor[8].InvDMax = -Motor[8].JogTa
+Motor[8].InvJMax = 0 
+Motor[8].HomeVel = Motor[8].JogSpeed
+
+
+Motor[8].ServoCtrl = 1
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc"
+open subprog calcVecVars
+#line 2 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc"
+ #define idx L0
+#define mnum L1
+#line 3 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc"
+ #define Motors(x) L(2+x)
+#define Motorsbase 2
+#line 4 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc"
+
+ Motors(0) = 5 
+ Motors(1) = 3 
+ Motors(2) = 4 
+ Motors(3) = 8 
+ Motors(4) = 1 
+
+ VecDataAcqDuration = VecExposure*VecNumSamples 
+ 
+ 
+ VecShutChgPos = ShutterOpenPos - ShutterClosedPos 
+
+ 
+ VecShutTime = abs(VecShutChgPos) / ShutterSpeed 
+
+ VecMaxTimeToSpeed = 0 
+ idx = 0 
+ while(idx < 4)
+ {
+ mnum = Motors(idx) 
+ 
+ 
+ VecAccel(idx) = 1/(-Motor[mnum].JogTa) 
+ VecDataAcqDist(idx) = VecEndPos(idx) - VecStartPos(idx)
+ VecDesSpeed(idx) = VecDataAcqDist(idx) / VecDataAcqDuration 
+ VecTooFast(idx) = 0 
+ if(abs(VecDesSpeed(idx)) > Motor[mnum].MaxSpeed) {
+ VecTooFast(idx) = 1 
+ }
+ 
+ VecTimeToSpeed(idx) = abs(VecDesSpeed(idx)) / VecAccel(idx) 
+ 
+ if(VecTimeToSpeed(idx) > VecMaxTimeToSpeed) {
+ VecMaxTimeToSpeed = VecTimeToSpeed(idx) 
+ }
+ 
+ if(VecStartPos(idx) > VecEndPos(idx)) {
+ VecDir(idx) = -1 
+ } else {
+ VecDir(idx) = 1 
+ }
+ 
+ VecSpeedUpDist(idx) = VecDir(idx)*VecAccel(idx)*VecTimeToSpeed(idx)*VecTimeToSpeed(idx)/2 
+ VecBufferDist(idx) = VecDesSpeed(idx)*VecBufferTime 
+ 
+ 
+ VecShutOpenDist(idx) = VecDesSpeed(idx)*VecShutTime 
+ VecShutLagDist(idx) = VecDesSpeed(idx)*ShutterLag 
+ 
+ 
+ VecBackUpDist(idx) = VecSpeedUpDist(idx) + VecBufferDist(idx) + VecShutOpenDist(idx) + VecShutLagDist(idx) 
+ 
+ idx = idx + 1 
+ }
+#undef idx
+#undef mnum
+#undef Motors
+#undef Motorsbase
+#line 59 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc"
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc"
+open subprog syncVecPos
+#line 2 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc"
+ 
+ #define idx L0
+#define mnum L1
+#define mpos L2
+#line 4 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc"
+ #define Motors(x) L(3+x)
+#define Motorsbase 3
+#line 5 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc"
+
+ Motors(0) = 5 
+ Motors(1) = 3 
+ Motors(2) = 4 
+ Motors(3) = 8 
+
+ idx = 0 
+ while(idx < 4)
+ {
+ mnum = Motors(idx) 
+ mpos = Motor[mnum].ActPos - Motor[mnum].HomePos 
+ VecStartPos(idx) = mpos 
+ VecEndPos(idx) = mpos 
+ idx = idx + 1
+ }
+#undef idx
+#undef mnum
+#undef mpos
+#undef Motors
+#undef Motorsbase
+#line 21 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc"
+close
+
+
+
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc"
+
+open subprog timer
+#define duration L0
+#line 3 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc"
+ #define endTime L1
+endTime = Sys.Time + duration
+#line 4 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc"
+ while(Sys.Time < endTime){}
+#undef duration
+#undef endTime
+#line 6 "/var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc"
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/osc.pmc"
+open prog osc 
+
+Gather.Enable = 2 
+dwell 0 
+
+inc 
+
+
+pvt(VecMaxTimeToSpeed) 
+A(VecSpeedUpDist(3)):(VecDesSpeed(3)) 
+
+if(VecBufferTime > 0) {
+ 
+ pvt(VecBufferTime) 
+ A(VecBufferDist(3)):(VecDesSpeed(3)) 
+}
+
+
+pvt(VecShutTime) 
+B(VecShutChgPos):0 A(VecShutOpenDist(3)):(VecDesSpeed(3)) 
+
+
+pvt(ShutterLag) 
+A(VecShutLagDist(3)):(VecDesSpeed(3)) 
+
+
+pvt(VecDataAcqDuration-ShutterLag) 
+
+A(VecDataAcqDist(3)-VecShutLagDist(3)):(VecDesSpeed(3)) 
+
+
+pvt(VecShutTime) 
+B(-VecShutChgPos):0 A(VecShutOpenDist(3)):(VecDesSpeed(3)) 
+
+
+pvt(ShutterLag) 
+A(VecShutLagDist(3)):(VecDesSpeed(3)) 
+
+
+pvt(VecMaxTimeToSpeed) 
+A(VecSpeedUpDist(3)):0 
+dwell 0 
+
+Gather.Enable = 0 
+dwell 0 
+
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/simplevec.pmc"
+
+#line 26 "/var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/simplevec.pmc"
+
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/vec.pmc"
+open prog vec 
+
+Gather.Enable = 2 
+dwell 0 
+
+inc 
+
+
+pvt(VecMaxTimeToSpeed) 
+X(VecSpeedUpDist(0)):(VecDesSpeed(0)) Y(VecSpeedUpDist(1)):(VecDesSpeed(1)) Z(VecSpeedUpDist(2)):(VecDesSpeed(2)) A(VecSpeedUpDist(3)):(VecDesSpeed(3)) 
+
+if(VecBufferTime > 0) {
+ 
+ pvt(VecBufferTime) 
+ X(VecBufferDist(0)):(VecDesSpeed(0)) Y(VecBufferDist(1)):(VecDesSpeed(1)) Z(VecBufferDist(2)):(VecDesSpeed(2)) A(VecBufferDist(3)):(VecDesSpeed(3)) 
+}
+
+
+pvt(VecShutTime) 
+B(VecShutChgPos):0 X(VecShutOpenDist(0)):(VecDesSpeed(0)) Y(VecShutOpenDist(1)):(VecDesSpeed(1)) Z(VecShutOpenDist(2)):(VecDesSpeed(2)) A(VecShutOpenDist(3)):(VecDesSpeed(3)) 
+Gate3[0].Chan[1].EquWrite=$3 
+
+
+
+
+
+
+pvt(VecDataAcqDuration-ShutterLag) 
+
+X(VecDataAcqDist(0)-VecShutLagDist(0)):(VecDesSpeed(0)) Y(VecDataAcqDist(1)-VecShutLagDist(1)):(VecDesSpeed(1)) Z(VecDataAcqDist(2)-VecShutLagDist(2)):(VecDesSpeed(2)) A(VecDataAcqDist(3)-VecShutLagDist(3)):(VecDesSpeed(3)) 
+
+
+pvt(VecShutTime) 
+B(-VecShutChgPos):0 X(VecShutOpenDist(0)):(VecDesSpeed(0)) Y(VecShutOpenDist(1)):(VecDesSpeed(1)) Z(VecShutOpenDist(2)):(VecDesSpeed(2)) A(VecShutOpenDist(3)):(VecDesSpeed(3)) 
+
+
+
+
+
+
+pvt(VecMaxTimeToSpeed) 
+X(VecSpeedUpDist(0)):0 Y(VecSpeedUpDist(1)):0 Z(VecSpeedUpDist(2)):0 A(VecSpeedUpDist(3)):0 
+dwell 0 
+
+Gather.Enable = 0 
+dwell 0 
+
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/01-poweronreset.plc"
+open plc PowerOnResetPLC 
+Sys.WDTReset = 5000 / (Sys.ServoPeriod * 2.258)
+call timer(0.005)
+BrickLV.Reset = 1
+WHILE (BrickLV.Reset == 1){}
+IF (BrickLV.Reset == 0)
+{
+ Sys.WDTReset = 0
+ 
+ Sys.MaxPhaseTime = 0
+ Sys.MaxServoTime = 0
+ Sys.MaxBgTime = 0
+
+ 
+ enable plc KillIdlePLC
+ enable plc HomeShutterPLC
+ enable plc VecPLC
+ 
+ 
+    system "killall gather_server.out"
+ call timer(0.005)
+    system "/var/ftp/usrflash/Project/C\ Language/Background\ Programs/gather_server.out"
+
+ DISABLE PLC PowerOnResetPLC
+ call timer(0.005)
+}
+ELSE
+{
+ 
+ KILL 1..8
+ DISABLE PLC 0..31
+	SEND 1"RESET FAILED !!!"
+ Sys.WDTReset = 0
+ DISABLE PLC PowerOnResetPLC
+ call timer(0.005)
+}
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc"
+#define VEC_IDLE 0
+#define VEC_BACKUP 1
+#define VEC_HOLDING 2
+#define VEC_ACQUIRING 3
+
+open plc VecPLC 
+
+#define idx L0
+#define mnum L1
+#line 9 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc"
+#define Motors(x) L(2+x)
+#define Motorsbase 2
+#line 10 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc"
+
+Motors(0) = 5 
+Motors(1) = 3 
+Motors(2) = 4 
+Motors(3) = 8 
+Motors(4) = 1 
+
+#define x_idx L7
+#define y_idx L8
+#define z_idx L9
+#define o_idx L10
+#define s_idx L11
+#line 18 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc"
+x_idx = Motors(0) 
+y_idx = Motors(1) 
+z_idx = Motors(2) 
+o_idx = Motors(3) 
+s_idx = Motors(4) 
+
+VecRunning = 0 
+VecAbort = 0 
+VecProceed = 0 
+VecState = VEC_IDLE 
+
+
+Gate3[0].Chan[0].EquWrite = $1 
+Gate3[0].Chan[1].EquWrite = $3 
+
+if(VecGo == 1) 
+{
+ VecGo = 0 
+
+ 
+ call calcVecVars() 
+ if(VecTooFast(0) || VecTooFast(1) || VecTooFast(2) || VecTooFast(3)) {
+ return
+ } 
+
+ 
+ 
+
+ VecRunning = 1 
+ VecState = VEC_BACKUP 
+ 
+ 
+ Ldata.coord = 1 
+ abs rapid 
+ 
+ 
+ 
+ 
+ 
+ B(ShutterClosedPos) A(VecStartPos(3) - VecBackUpDist(3)) 
+ 
+ call timer(0.01) 
+ 
+ 
+ 
+ while (Motor[o_idx].DesVel != 0) {}
+
+ 
+ if(VecExpose == 0) {
+ VecShutChgPos = 0 
+ }
+ 
+ if(VecSetupGather == 1) {
+ Gather.Addr[0] = Sys.ServoCount.a 
+ Gather.Addr[1] = Motor[5].DesPos.a 
+ Gather.Addr[2] = Motor[5].ActPos.a 
+ Gather.Addr[3] = Motor[3].DesPos.a 
+ Gather.Addr[4] = Motor[3].ActPos.a 
+ Gather.Addr[5] = Motor[4].DesPos.a 
+ Gather.Addr[6] = Motor[4].ActPos.a 
+ 
+ 
+ Gather.Addr[7] = Motor[8].DesPos.a 
+ Gather.Addr[8] = Motor[8].ActPos.a 
+ Gather.Addr[9] = Motor[1].DesPos.a 
+ Gather.Addr[10] = Motor[1].ActPos.a 
+ Gather.Items = 11 
+ } 
+ 
+ 
+ Gate3[0].Chan[0].EquWrite = $3 
+ 
+ 
+ if(VecHold == 1) {
+ 
+ VecState = VEC_HOLDING 
+ VecProceed = 0 
+ while(VecProceed == 0 &&VecAbort == 0) {}
+ }
+ 
+ 
+ if(VecAbort == 1) {
+ return
+ }
+ 
+ VecState = VEC_ACQUIRING 
+ 
+ 
+ 
+ begin 1:osc 
+ run 1 
+ 
+ 
+ call timer(0.01) 
+ while(VecAbort == 0 &&Coord[1].ProgActive == 1) {}
+ 
+ Gate3[0].Chan[0].EquWrite = $1 
+ Gate3[0].Chan[1].EquWrite = $1 
+ 
+ 
+ if(VecAbort) {
+ abort 1 
+ }
+ 
+ 
+ abs rapid 
+ B(ShutterClosedPos) 
+ dwell 0 
+ 
+ VecGo = 0 
+}
+
+#undef idx
+#undef mnum
+#undef Motors
+#undef Motorsbase
+#undef x_idx
+#undef y_idx
+#undef z_idx
+#undef o_idx
+#undef s_idx
+#line 131 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc"
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/03-home_gonio.plc"
+#define HG_IDLE 0
+#define HG_HOMING_X 1
+#define HG_HOMING_Y 2
+#define HG_HOMING_Z 3
+#define HG_HOMING_O 4
+#define HG_HOMING_PYZ 5
+#define HG_FAULT_X 6
+#define HG_FAULT_Z 7
+#define HG_FAULT_O 8
+#define HG_FAULT_PYZ 9
+
+open plc HomeGonioPLC 
+
+HomeGonioState = HG_IDLE 
+
+
+HomeGonioState = HG_HOMING_X 
+cmd"#5$"
+call timer(0.2)
+while(Motor[5].PhaseFound==0 &&Motor[5].AmpFault==0) {}
+
+if(Motor[5].AmpFault) {
+ HomeGonioState = HG_FAULT_X 
+ disable plc HomeGonioPLC 
+ return
+}
+
+home 5 
+call timer(0.2) 
+while(Motor[5].HomeInProgress==1) {}
+
+if(Motor[5].HomeComplete==0 || Motor[5].AmpEna==0) {
+ HomeGonioState = HG_FAULT_X 
+ disable plc HomeGonioPLC 
+ return
+}
+
+
+HomeGonioState = HG_HOMING_Y
+Motor[6].IbBias = 2000
+cmd"#6out0"
+call timer(1)
+Motor[6].PhasePos = 0
+kill 6
+Motor[6].IbBias = 0
+Motor[6].PhaseFound = 1
+
+
+jog-6
+call timer(0.2)
+while(Motor[6].FeFatal==0) {}
+
+call timer(0.5)
+
+
+home 6
+call timer(0.2)
+while(Motor[6].HomeInProgress==1) {}
+
+
+
+HomeGonioState = HG_HOMING_Z 
+cmd"#7$"
+call timer(0.2)
+while(Motor[7].PhaseFound==0 &&Motor[7].AmpFault==0) {}
+
+if(Motor[7].AmpFault) {
+ HomeGonioState = HG_FAULT_Z 
+ disable plc HomeGonioPLC 
+ return
+}
+
+home 7 
+call timer(0.2) 
+while(Motor[7].HomeInProgress==1) {}
+
+if(Motor[7].HomeComplete==0 || Motor[7].AmpEna==0) {
+ HomeGonioState = HG_FAULT_Z 
+ disable plc HomeGonioPLC 
+ return
+}
+
+
+HomeGonioState = HG_HOMING_O 
+cmd"#8$"
+call timer(0.2)
+while(Motor[8].PhaseFound==0 &&Motor[8].AmpFault==0) {}
+
+if(Motor[8].AmpFault) {
+ HomeGonioState = HG_FAULT_O 
+ disable plc HomeGonioPLC 
+ return
+}
+
+home 8 
+call timer(0.2) 
+while(Motor[8].HomeInProgress==1) {}
+
+if(Motor[8].HomeComplete==0 || Motor[8].AmpEna==0) {
+ HomeGonioState = HG_FAULT_O 
+ disable plc HomeGonioPLC 
+ return
+}
+
+
+HomeGonioState = HG_HOMING_PYZ 
+Motor[3].MinPos = 0
+Motor[3].MaxPos = 0
+Motor[4].MinPos = 0
+Motor[4].MaxPos = 0
+jog-3,4 
+call timer(0.2) 
+while(Motor[3].FeFatal==0 &&Motor[4].FeFatal==0) {}
+
+call timer(1) 
+
+home 3,4 
+call timer(0.2) 
+while(Motor[3].HomeInProgress==1 &&Motor[4].HomeInProgress==1) {}
+
+call timer(0.5) 
+
+if(Motor[3].HomeComplete==0 || Motor[4].HomeComplete==0) {
+ HomeGonioState = HG_FAULT_PYZ 
+ disable plc HomeGonioPLC 
+ return
+}
+
+HomeGonioState = HG_IDLE 
+
+disable plc HomeGonioPLC
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc"
+
+open plc KillIdlePLC 
+
+#define Period L0
+Period = 0.5
+#line 5 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc"
+#define Timeout L1
+Timeout = 2.5
+#line 6 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc"
+#define MotorNum L2
+#line 7 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc"
+
+call timer(Period) 
+
+MotorNum = 2 
+while(MotorNum <= 4) {
+ if(Motor[MotorNum].InPos &&Motor[MotorNum].DesVelZero &&Motor[MotorNum].AmpEna &&VecRunning==0) {
+ MotorIdleTime(MotorNum) = MotorIdleTime(MotorNum) + Period 
+ if(MotorIdleTime(MotorNum) > Timeout) {
+ Ldata.Motor = MotorNum 
+ kill 
+ }
+ } else {
+ MotorIdleTime(MotorNum) = 0 
+ }
+ MotorNum = MotorNum + 1 
+}
+#undef Period
+#undef Timeout
+#undef MotorNum
+#line 24 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc"
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/08-home_shutter.plc"
+open plc HomeShutterPLC 
+Motor[1].ServoCtrl=0
+KILL 1
+DAC1X9=-263
+call timer(0.5)
+Motor[1].Pos=0
+Motor[1].ServoCtrl=1
+JOG 1 = 0
+disable plc HomeShutterPLC
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/13-home_sy.plc"
+open plc HomeSYPLC 
+
+
+Motor[6].IbBias = 2000
+cmd"#6out0"
+call timer(1)
+Motor[6].PhasePos = 0
+kill 6
+Motor[6].IbBias = 0
+Motor[6].PhaseFound = 1
+
+
+jog-6
+while(Motor[6].FeFatal==0) {}
+
+call timer(0.5)
+
+
+home 6
+
+disable plc HomeSYPLC
+close
+#endif
+#ifndef _INC_BUILD_
+#line 1 "/var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/99-sine_enc_offsets.plc"
+
+#endif
+#line 1 "/var/ftp/usrflash/Project/Configuration/pp_startup.txt"
+ENABLE PLC PowerOnResetPLC

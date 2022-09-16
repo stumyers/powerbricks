@@ -1,0 +1,37 @@
+OPEN PLC PowerOnResetPLC
+Sys.WDTReset = 5000 / (Sys.ServoPeriod * 2.258)
+CALL timer(0.005)
+BrickLV.Reset = 1
+WHILE (BrickLV.Reset == 1){}
+IF (BrickLV.Reset == 0)
+{
+	Sys.WDTReset = 0
+	
+	Sys.MaxPhaseTime = 0
+	Sys.MaxServoTime = 0
+	Sys.MaxBgTime = 0
+
+    // ENABLE MACHINE PLCS
+    enable plc KillIdlePLC
+    enable plc HomeShutterPLC
+    enable plc VecPLC
+    
+    // Enable gather server
+    system "killall gather_server.out"
+    call timer(0.005)
+    system "/var/ftp/usrflash/Project/C\ Language/Background\ Programs/gather_server.out"
+
+	DISABLE PLC PowerOnResetPLC
+	CALL timer(0.005)
+}
+ELSE
+{
+	// RESET FAILED, TAKE ACTION
+	KILL 1..8
+	DISABLE PLC 0..31
+	SEND 1"RESET FAILED !!!"
+	Sys.WDTReset = 0
+	DISABLE PLC PowerOnResetPLC
+	CALL timer(0.005)
+}
+CLOSE									

@@ -1,0 +1,44 @@
+// Axis 1: Shutter rotation
+// Cambridge Tech 6220H Galvo motor + 671 series driver
+// PWM Frequency: at least 40 kHz
+
+ptr DAC1X9 -> S.IO:$90004C.16.16;
+ptr ADC1X9 -> S.IO:$900028.16.16;
+
+PowerBrick[0].Chan[0].OutputMode  = 7
+PowerBrick[0].Chan[0].PwmFreqMult = 7 //PhaseFreq = 10k -> PwmFreq = 40kHz
+
+Motor[1].ServoCtrl    = 1
+Motor[1].PhaseCtrl    = 0
+Motor[1].Ctrl         = Sys.PosCtrl
+Motor[1].pDac         = PowerBrick[0].Chan[0].Pfm.a
+Motor[1].PosSf        = 1/exp2(16)
+Motor[1].pAbsPos      = PowerBrick[0].Chan[0].AdcAmp[2].a
+Motor[1].AbsPosFormat = $00001010 
+Motor[1].FatalFeLimit = 0
+Motor[1].WarnFeLimit  = 0
+Motor[1].pLimits      = 0
+Motor[1].pAmpFault    = 0
+Motor[1].JogTa        = 0
+Motor[1].JogTs        = 0
+Motor[1].InvAmax      = 0
+Motor[1].InvDmax      = 0
+Motor[1].InvJmax      = 0
+Motor[1].JogSpeed     = 1e9
+Motor[1].MaxSpeed     = Motor[1].JogSpeed
+Motor[1].MinPos       = -13380
+Motor[1].MaxPos       = 13380
+Motor[1].InPosBand    = 6000
+
+EncTable[1].type     = 1
+EncTable[1].pEnc     = PowerBrick[0].Chan[0].AdcAmp[2].a
+EncTable[1].MaxDelta = 0
+EncTable[1].index1   = 16
+EncTable[1].index2   = 16
+EncTable[1].index3   = 0
+EncTable[1].index4   = 0
+
+// Results of linear regression test: ADC = 1.747*DAC + 458
+EncTable[1].ScaleFactor = 1/1.747
+Motor[1].AbsPosSf       = 1/exp2(16)/1.747
+Motor[1].DacBias        = -458/1.747

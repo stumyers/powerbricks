@@ -1,0 +1,5 @@
+// Sleep for duration seconds
+open subprog timer(duration)
+  local endTime = Sys.Time + duration;
+  while(Sys.Time < endTime){}
+close

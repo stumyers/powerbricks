@@ -1,0 +1,113 @@
+#define MAX_ADC         33.85     // Amps
+
+// Disable Abort All signal
+Sys.pAbortAll  = 0
+
+// Disable Write Protection
+Sys.WpKey = $AAAAAAAA
+
+// Limit number of coordinates and number of motors
+Sys.MaxMotors = 16;
+Sys.MaxCoords = 4;
+
+// Recommended Phase Frequency: 10kHz
+Gate3[0].PhaseFreq       = 10000.000
+Gate3[1].PhaseFreq       = 10000.000
+
+// Recommended Servo Frequency: 5kHz
+// Fservo = Fphase/(1+ServoClockDiv)
+Gate3[0].ServoClockDiv   = 1
+Gate3[1].ServoClockDiv   = 1
+
+// Encoder sampling: 50 MHz
+// Fenc = 100 MHz / 2^EncClockDiv
+Gate3[0].EncClockDiv     = 1
+Gate3[1].EncClockDiv     = 1  
+
+// PFM Frequency: 25 MHz
+// Fpfm = 100 MHz / 2^PfmClockDiv
+Gate3[0].PfmClockDiv     = 2
+Gate3[1].PfmClockDiv     = 2
+
+// After the following commands the time-base shoots up, which is corrected with the following %100 command
+Sys.ServoPeriod          = 1000*(Gate3[0].ServoClockDiv+1)/Gate3[0].PhaseFreq
+Sys.PhaseOverServoPeriod = 1/(Gate3[0].ServoClockDiv+1)
+Sys.RtIntPeriod          = 0         // RTI every servo cycle
+
+// Turn off packing for every axis
+Gate3[0].Chan[0].PackInData  = 0
+Gate3[0].Chan[1].PackInData  = 0
+Gate3[0].Chan[2].PackInData  = 0
+Gate3[0].Chan[3].PackInData  = 0
+Gate3[1].Chan[0].PackInData  = 0
+Gate3[1].Chan[1].PackInData  = 0
+Gate3[1].Chan[2].PackInData  = 0
+Gate3[1].Chan[3].PackInData  = 0
+
+Gate3[0].Chan[0].PackOutData = 0
+Gate3[0].Chan[1].PackOutData = 0
+Gate3[0].Chan[2].PackOutData = 0
+Gate3[0].Chan[3].PackOutData = 0
+Gate3[1].Chan[0].PackOutData = 0
+Gate3[1].Chan[1].PackOutData = 0
+Gate3[1].Chan[2].PackOutData = 0
+Gate3[1].Chan[3].PackOutData = 0
+
+&1
+#1->B // Shutter
+#5->X // Stack X
+#3->Y // Pin Y
+#4->Z // Pin Z
+#8->A // Omega
+
+Coord[1].FeedTime = 1;
+
+// Vector variables
+
+// Status
+global VecState;            // 0:idle, 1:backup, 2:holding, 3:acquiring
+global VecRunning;
+
+// Commands
+global VecGo;
+global VecProceed;
+global VecAbort;
+
+// Parameters
+global VecExpose;           // open shutter?
+global VecHold;             // pause between backup and acquiring?
+global VecSetupGather;      // Setup Gather parameters
+
+global VecNumSamples;
+global VecExposure;         // ms
+global VecDataAcqDuration;  // ms
+
+global VecShutChgPos;
+global VecShutTime;
+global VecBufferTime;
+global VecMaxTimeToSpeed;
+
+global VecTooFast(4);
+global VecStartPos(4);
+global VecEndPos(4);
+global VecAccel(4);
+global VecDataAcqDist(4);
+global VecDesSpeed(4);
+global VecTimeToSpeed(4);
+global VecDir(4);
+global VecSpeedUpDist(4);
+global VecBufferDist(4);
+global VecShutOpenDist(4);
+global VecShutLagDist(4);
+global VecBackUpDist(4);
+
+global ShutterOpenPos;
+global ShutterClosedPos;
+
+global ShutterSpeed = 4561.35; // ct/ms, measured between -15 and 15 deg
+global ShutterLag = 2; // ms, time lag between command and actual position
+
+// KillIdle PLC
+global MotorIdleTime(8);
+
+global HomeGonioState;

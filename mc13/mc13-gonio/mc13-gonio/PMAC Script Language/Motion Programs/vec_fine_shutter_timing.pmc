@@ -1,0 +1,47 @@
+open prog vec
+
+Gather.Enable = 2;
+dwell 0;
+
+inc;
+
+// Bring everyone up to desired speed
+pvt(VecMaxTimeToSpeed);
+X(VecSpeedUpDist(0)):(VecDesSpeed(0)) Y(VecSpeedUpDist(1)):(VecDesSpeed(1)) Z(VecSpeedUpDist(2)):(VecDesSpeed(2)) A(VecSpeedUpDist(3)):(VecDesSpeed(3));
+
+if(VecBufferTime > 0) {
+  // Stay at constant speed for a while
+  pvt(VecBufferTime);
+  X(VecBufferDist(0)):(VecDesSpeed(0)) Y(VecBufferDist(1)):(VecDesSpeed(1)) Z(VecBufferDist(2)):(VecDesSpeed(2)) A(VecBufferDist(3)):(VecDesSpeed(3));
+}
+
+// Open the shutter while everyone is moving
+pvt(VecShutTime);
+B(VecShutChgPos):0 X(VecShutOpenDist(0)):(VecDesSpeed(0)) Y(VecShutOpenDist(1)):(VecDesSpeed(1)) Z(VecShutOpenDist(2)):(VecDesSpeed(2)) A(VecShutOpenDist(3)):(VecDesSpeed(3));
+
+// Wait shutter lag
+//pvt(ShutterLag);
+//X(VecShutLagDist(0)):(VecDesSpeed(0)) Y(VecShutLagDist(1)):(VecDesSpeed(1)) Z(VecShutLagDist(2)):(VecDesSpeed(2)) A(VecShutLagDist(3)):(VecDesSpeed(3));
+
+// Data acquisition
+pvt(VecDataAcqDuration-ShutterLag);
+//pvt(VecDataAcqDuration);
+X(VecDataAcqDist(0)-VecShutLagDist(0)):(VecDesSpeed(0)) Y(VecDataAcqDist(1)-VecShutLagDist(1)):(VecDesSpeed(1)) Z(VecDataAcqDist(2)-VecShutLagDist(2)):(VecDesSpeed(2)) A(VecDataAcqDist(3)-VecShutLagDist(3)):(VecDesSpeed(3));
+
+// Close shutter while still acquiring
+pvt(VecShutTime);
+B(-VecShutChgPos):0 X(VecShutOpenDist(0)):(VecDesSpeed(0)) Y(VecShutOpenDist(1)):(VecDesSpeed(1)) Z(VecShutOpenDist(2)):(VecDesSpeed(2)) A(VecShutOpenDist(3)):(VecDesSpeed(3));
+
+// Wait shutter lag
+//pvt(ShutterLag);
+//X(VecShutLagDist(0)):(VecDesSpeed(0)) Y(VecShutLagDist(1)):(VecDesSpeed(1)) Z(VecShutLagDist(2)):(VecDesSpeed(2)) A(VecShutLagDist(3)):(VecDesSpeed(3));
+
+// Stop everyone
+pvt(VecMaxTimeToSpeed);
+X(VecSpeedUpDist(0)):0 Y(VecSpeedUpDist(1)):0 Z(VecSpeedUpDist(2)):0 A(VecSpeedUpDist(3)):0;
+dwell 0;
+
+Gather.Enable = 0;
+dwell 0;
+
+close

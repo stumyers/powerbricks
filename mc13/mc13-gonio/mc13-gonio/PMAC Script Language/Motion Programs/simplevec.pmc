@@ -1,0 +1,25 @@
+/*open prog simplevec
+
+Gather.Enable = 2;
+dwell 0;
+
+abs;
+rapid;
+A(StartO) X(StartX) Y(StartY) Z(StartZ);
+dwell 10;
+B(ShutterOpenPos);
+dwell 0;
+
+linear;
+tm(Duration)
+A(EndO) X(EndX) Y(EndY) Z(EndZ);
+dwell 0;
+
+rapid;
+B(ShutterClosedPos);
+dwell 0;
+
+Gather.Enable = 0;
+dwell 0;
+
+close*/

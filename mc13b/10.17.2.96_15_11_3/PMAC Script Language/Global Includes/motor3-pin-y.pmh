@@ -1,0 +1,76 @@
+// Axis 3: Pin Y
+// SmarAct SDC 2 + SmarAct stage
+// Max STEP frequency is 5 MHz
+
+#define PY_MAX_FREQ  4900000   // Step Frequency
+#define PY_STEP_INC  10        // Step Increment (nm)
+#define PY_MAX_SPEED 4         // mm/s
+#define PY_MIN_POS   -4        // mm
+#define PY_MAX_POS   4         // mm
+
+// BrickLV.Chan[2].TwoPhaseMode = 1 // 1 -> Stepper/Direct microstepping
+
+PowerBrick[0].Chan[2].PwmFreqMult = 1
+PowerBrick[0].Chan[2].TimerMode   = 3   // 3 -> PFM pulse counting
+PowerBrick[0].Chan[2].EncCtrl     = 3   // 3 -> x4 quadrature CW
+PowerBrick[0].Chan[2].PfmWidth    = 4   // Pulse width duration
+PowerBrick[0].Chan[2].OutputMode  = 8   // 8 -> Phase D is PFM
+PowerBrick[0].Chan[2].OutFlagD    = 1   // 1 -> Enable STEP and DIRECTIon connector
+PowerBrick[0].Chan[2].PfmFormat   = 0   // 0 -> Step and Direction mode
+PowerBrick[0].Chan[2].OutputPol   = 2   // 2 -> Non-inverted A, B, & C; inverted D
+PowerBrick[0].Chan[2].PfmDirPol   = 1   // 1 -> Positive direction provides a high output
+PowerBrick[0].Chan[2].CaptCtrl    = 1   // 1 -> Capture on Index (CHCn) high
+PowerBrick[0].Chan[2].PackOutData = 0
+PowerBrick[0].Chan[2].PackInData  = 0
+
+Motor[3].ServoCtrl   = 1                         // 1 -> Activate motor
+Motor[3].PhaseCtrl   = 0                         // 0 -> No phase control
+Motor[3].MaxSpeed    = PY_MAX_SPEED*1000/PY_STEP_INC   // um/ms
+Motor[3].JogSpeed    = Motor[3].MaxSpeed
+Motor[3].HomeVel     = Motor[3].MaxSpeed*0.8
+Motor[3].pLimits     = 0                         // 0 -> No limits
+Motor[3].pAmpFault   = 0                         // 0 -> Ignore amplifier fault
+Motor[3].pEncLoss    = 0                         // 0 -> Disable encoder loss detection
+Motor[3].I2tSet      = 0                         // Disable current protection
+Motor[3].I2tTrip     = 0
+Motor[3].MaxDac      = PY_MAX_FREQ*pow(2, 16+PowerBrick[0].PfmClockDiv)/pow(10, 8)
+Motor[3].pDac        = PowerBrick[0].Chan[2].Pfm.a
+Motor[3].EncType     = 5                         // 5 -> Quadrature encoder, 1/T extension
+Motor[3].pEnc        = EncTable[3].a
+Motor[3].pEnc2       = EncTable[3].a
+Motor[3].PosSf       = 1
+Motor[3].Pos2Sf      = 1
+Motor[3].CaptureMode = 0                         // 0 -> Hardware Capture
+Motor[3].MinPos      = PY_MIN_POS*1000000/PY_STEP_INC
+Motor[3].MaxPos      = PY_MAX_POS*1000000/PY_STEP_INC
+Motor[3].HomeVel     = Motor[3].MaxSpeed
+Motor[3].AbortTa     = 0
+
+Motor[3].Servo.Kp          = 0.15
+Motor[3].Servo.Kvfb        = 0
+Motor[3].Servo.Kvff        = 13
+Motor[3].Servo.Ki          = 0
+Motor[3].Servo.Kaff        = 0
+Motor[3].Servo.BreakPosErr = 1     // Deadband size (ct)
+Motor[3].Servo.Kbreak      = 0     // Gain inside deadband zone
+Motor[3].Servo.OutDbOn     = 0
+Motor[3].Servo.OutDbOff    = 0
+Motor[3].Servo.OutDbSeed   = 0
+Motor[3].InPosBand         = 2
+Motor[3].FatalFeLimit      = 10000
+
+EncTable[3].type        = 1                      // 1 -> Single 32 bit read
+EncTable[3].pEnc        = PowerBrick[0].Chan[2].ServoCapt.a
+EncTable[3].MaxDelta    = 0
+EncTable[3].index1      = 0
+EncTable[3].index2      = 0
+EncTable[3].index3      = 0
+EncTable[3].index4      = 0
+EncTable[3].ScaleFactor = 1/256
+
+Motor[3].JogTa       = -2.5e-4
+Motor[3].JogTs       = 0
+Motor[3].AbortTa     = Motor[3].JogTa
+Motor[3].InvAMax     = -Motor[3].JogTa
+Motor[3].InvDMax     = -Motor[3].JogTa
+Motor[3].InvJmax     = 0

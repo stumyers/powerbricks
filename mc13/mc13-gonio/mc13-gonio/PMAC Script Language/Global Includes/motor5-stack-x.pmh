@@ -1,0 +1,115 @@
+// Axis 5: Stack X
+// AeroTech ABL1500 Linear Stage
+// ABL15050-M-10-NC-LN50AS
+
+// Nominal travel: 458mm (-10 +448)
+// Current peak/cont (rms): 16.40 / 2.83
+// Pole Pitch: 25 mm pitch, 50 mm cycle
+// Counts per cycle: 25,000,000
+// Encoder resolution: 2 nm = 0.000002 mm
+// Max Speed: 5,000,000 cts/sec = 10 mm/sec
+// Accel: 1000 mm/s^2
+// Electrical Characteristics: MaxV = 340V, L = 1.9 mH, R = 6.4 ohms
+
+#define SX_ECL             50              // Electrical Cycle (mm)
+#define SX_CTS_PER_MM      250             // Observed with EncTable[5].ScaleFactor=1/16384
+#define SX_ENC_SCALE       2000            // 50*2000 = 100000 cts / mm 
+#define SX_CTS_PER_ECL     (SX_ECL*SX_CTS_PER_MM*16384)
+#define SX_CTS_PER_UNIT    (SX_CTS_PER_MM*SX_ENC_SCALE)  // cts/mm
+
+#define SX_PEAK_CURR       16.40     // Amps RMS
+#define SX_CONT_CURR       2.83      // Amps RMS
+#define SX_TIME_AT_PEAK    1         // Seconds
+//#define SX_CTS_PER_UNIT    500000    // cts/mm
+
+#define SX_MAX_SPEED       10        // mm/s
+#define SX_JOG_SPEED       8         // mm/s
+#define SX_HOME_SPEED      -1        // mm/s
+#define SX_MAX_ACCEL       10        // mm/s^2
+
+#define SX_PHASING_TIME    50        // Milliseconds
+
+// PWM Frequency
+// L = Inductance in Henry
+// R = Resistance in Ohms
+// Fpwm > 20*R / (2*pi*L)
+
+// For this motor: 
+// L = 1.9 mH = 0.0019  
+// R = 6.7 ohms
+// Min PWM Freq = 10772.02 Hz
+
+// Fpwm = Fphase*(PwmFreqMult+1)/2
+// (for Fphase: 10kHz) PWM Frequency: 15 kHz
+PowerBrick[1].Chan[0].PwmFreqMult      = 2
+
+// Type of output
+BrickLV.Chan[4].TwoPhaseMode = 0                 // 0 -> Brush/Brushless motor
+
+//Motor[1].pLimits = PowerBrick[0].Chan[0].Status.a;
+Motor[5].pLimits         = 0                     // 0 -> Don't use limits
+Motor[5].AdcMask         = $FFFC0000             // 14-bit ADC
+Motor[5].AmpFaultLevel   = 1
+Motor[5].PhaseCtrl       = 4                     // 4 -> Enable phase control
+Motor[5].PhaseOffset     = -683                   // 683 or -683 -> 3 phases
+
+// Sinusoidal Encoder
+EncTable[5].ScaleFactor = SX_ENC_SCALE/16384
+Motor[5].EncType = 6
+PowerBrick[1].Chan[0].AtanEna = 1
+Motor[5].PhasePosSf = -2048/SX_CTS_PER_ECL  // Linear
+
+// If Motor[5] VOLTAGE >= BUS VOLTAGE (48V)
+Motor[5].PwmSf           = -0.95*16384            // 95% of full voltage, sign must agree with PhaseOffset
+// Else
+// Motor[5].PwmSf         = MOTOR_VOLTAGE/BUS_VOLTAGE*0.95*16384
+
+// Protection
+Motor[5].MaxDac       = SX_PEAK_CURR / MAX_ADC * 32767 * 0.866;
+Motor[5].I2TSet       = SX_CONT_CURR / MAX_ADC * 32767 * 0.866;
+Motor[5].I2tTrip      = (POW(Motor[5].MaxDac,2) - POW(Motor[5].I2TSet,2)) * SX_TIME_AT_PEAK;
+Motor[5].WarnFeLimit  = 16000
+Motor[5].FatalFeLimit = 32000
+Motor[5].InPosBand    = 1000
+
+// Phasing
+Motor[5].PhaseFindingTime  = SX_PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+Motor[5].PhaseFindingDac   = 3.5 * Motor[5].I2TSet / 4
+Motor[5].AbsPhasePosOffset = 2048 / 5
+
+// Current loop tuning
+Motor[5].IiGain  = 1.6
+Motor[5].IpfGain = 3
+
+// Servo loop tuning before 2017-04 shutdown
+//Motor[5].Servo.Kp    = 0.5
+//Motor[5].Servo.Kvfb  = 3.9
+//Motor[5].Servo.Kvifb = 0
+//Motor[5].Servo.Ki    = 0.001
+//Motor[5].Servo.Kvff  = 4
+//Motor[5].Servo.Kviff = 0
+//Motor[5].Servo.Kaff  = 0
+//Motor[5].Servo.Kfff  = 0
+
+// Servo loop tuning
+Motor[5].Servo.Kp    = 0.5
+Motor[5].Servo.Kvfb  = 3.9
+Motor[5].Servo.Kvifb = 0
+Motor[5].Servo.Ki    = 0.001
+Motor[5].Servo.Kvff  = 4
+Motor[5].Servo.Kviff = 0
+Motor[5].Servo.Kaff  = 0
+Motor[5].Servo.Kfff  = 0
+
+// Speeds
+Motor[5].MaxSpeed    = SX_MAX_SPEED*SX_CTS_PER_UNIT/1000        // cts/ms
+Motor[5].JogSpeed    = SX_JOG_SPEED*SX_CTS_PER_UNIT/1000        // cts/ms
+Motor[5].HomeVel     = -SX_JOG_SPEED*SX_CTS_PER_UNIT/1000       // cts/ms
+Motor[5].InvAMax     = 1000000/(SX_MAX_ACCEL*SX_CTS_PER_UNIT)   // ms^2/cts
+Motor[5].InvDMax     = Motor[5].InvAMax
+Motor[5].JogTa       = -Motor[5].InvAMax                        // ms^2/cts
+Motor[5].JogTs       = 0
+Motor[5].AbortTa     = 0
+
+// Enable motor
+Motor[5].ServoCtrl   = 1

@@ -1,0 +1,39 @@
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor5-stack-x.pmh.i
+data/mc14a-gonio/Configuration/pp_proj.ini.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor1-stack-x-mult-box.pmh.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor5-stack-x-mult-box.pmh.i
+data/mc14a-gonio/Configuration/pp_inc_disable.txt.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor4-pin-z.pmh.i
+data/mc14a-gonio/PMAC Script Language/PLC Programs/13-home_sy.plc.i
+data/mc14a-gonio/Documentation/note.txt.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor3-pin-y.pmh.i
+data/mc14a-gonio/PMAC Script Language/Libraries/timer.pmc.i
+data/mc14a-gonio/C Language/Realtime Routines/usrcode.c.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor7-stack-z.pmh.i
+data/mc14a-gonio/Configuration/pp_startup.txt.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor2-shutter-x.pmh.i
+data/mc14a-gonio/Configuration/pp_custom_save.cfg.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh.i
+data/mc14a-gonio/PMAC Script Language/Libraries/pos_comp.pmc.i
+data/mc14a-gonio/Configuration/pp_custom_save.tpl.i
+data/mc14a-gonio/PMAC Script Language/PLC Programs/99-sine_enc_offsets.plc.i
+data/mc14a-gonio/PMAC Script Language/Libraries/sync_vec_pos.pmc.i
+data/mc14a-gonio/PMAC Script Language/Libraries/calc_vec_vars.pmc.i
+data/mc14a-gonio/Configuration/pp_disable.txt.i
+data/mc14a-gonio/C Language/Realtime Routines/Makefile.i
+data/mc14a-gonio/PMAC Script Language/PLC Programs/01-poweronreset.plc.i
+data/mc14a-gonio/C Language/Realtime Routines/usrcode.h.i
+data/mc14a-gonio/C Language/Include/pp_proj.h.i
+data/mc14a-gonio/C Language/CPLCs/rticplc/rticplc.c.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor8-spindle.pmh.i
+data/mc14a-gonio/C Language/Background Programs/gather_server/gather_server.c.i
+data/mc14a-gonio/C Language/CPLCs/bgcplc00/bgcplc.c.i
+data/mc14a-gonio/PMAC Script Language/PLC Programs/08-home_shutter.plc.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/global_definitions.pmh.i
+data/mc14a-gonio/PMAC Script Language/PLC Programs/02-vec.plc.i
+data/mc14a-gonio/Configuration/pp_inc_startup.txt.i
+data/mc14a-gonio/PMAC Script Language/Motion Programs/vec.pmc.i
+data/mc14a-gonio/PMAC Script Language/PLC Programs/07-kill-idle.plc.i
+data/mc14a-gonio/Configuration/pp_save.cfg.i
+data/mc14a-gonio/mc14a-gonio.ppproj.i
+data/mc14a-gonio/PMAC Script Language/Global Includes/motor6-stack-y.pmh.i

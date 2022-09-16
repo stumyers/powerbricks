@@ -1,0 +1,100 @@
+ptr Enc8Equ->Gate3[1].Chan[3].Equ;
+ptr Enc8CompA->Gate3[1].Chan[3].CompA;
+ptr Enc8CompB->Gate3[1].Chan[3].CompB;
+ptr Enc8CompAdd->Gate3[1].Chan[3].CompAdd;
+ptr Enc8EquWrite->Gate3[1].Chan[3].EquWrite;
+ptr Enc8Equ1Ena->Gate3[1].Chan[3].Equ1Ena;
+ptr Enc8EquOutMask->Gate3[1].Chan[3].EquOutMask;
+ptr Enc8EquOutPol->Gate3[1].Chan[3].EquOutPol;
+
+global Enc8PhaseCapt = 0;
+global ForceEqu8Off = 1;
+
+global Enc8PosCompMode = 0;
+global Enc8PulseA = 0;
+global Enc8PulseB = 0;
+global Enc8PulsePeriod = 0;
+
+global Enc8CompAUser = 0;
+global Enc8CompBUser = 0;
+global Enc8CompAddUser = 0;
+
+// CPX CALL Enc8SetPosCompSUB
+open subprog Enc8SetPosCompSUB
+  local Enc8TempA, Enc8TempB;
+  local Enc8PulseATemp, Enc8PulseBTemp, Enc8PulsePeriodTemp;
+  local Mtr8HomePos;
+  
+  ForceEqu8Off = 0;
+  
+  Enc8PulseATemp = Enc8PulseA;
+  Enc8PulseBTemp = Enc8PulseB;
+  Enc8PulsePeriodTemp = Enc8PulsePeriod;
+  Mtr8HomePos = Motor[8].HomePos;
+  
+  if(abs(Enc8PulseATemp) <= 1048575 && abs(Enc8PulseBTemp) <= 1048575) {
+  
+    // Absolute
+    if(Enc8PosCompMode == 0)
+    {
+      Enc8TempA = ((Mtr8HomePos + Enc8PulseATemp)*4096) % 4294967296;
+      Enc8TempB = ((Mtr8HomePos + Enc8PulseBTemp)*4096) % 4294967296;
+    }
+    
+    // Incremental
+    if(Enc8PosCompMode == 1)
+    {
+      Enc8TempA = (Enc8PhaseCapt + Enc8PulseATemp * 4096) % 4294967296
+      Enc8TempB = (Enc8PhaseCapt + Enc8PulseBTemp * 4096) % 4294967296
+    }
+    
+    if(Enc8TempA < 0) { Enc8TempA += 4294967296 }
+    if(Enc8TempB < 0) { Enc8TempB += 4294967296 }
+  
+    Enc8CompA = Enc8TempA;
+    Enc8CompB = Enc8TempB;
+    Enc8CompAdd = Enc8PulsePeriodTemp *4096;
+    Enc8EquWrite = 1;
+    
+    call Enc8PosCompDisplaySUB;
+    
+  } else {
+    ForceEqu8Off = 1;
+    Enc8CompAUser = inf;
+    Enc8CompBUser = -inf;
+  }  
+close
+
+open subprog Enc8PosCompDisplaySUB
+  if(Enc8PulseA >= 0) {
+    if(Enc8CompA >= Enc8PhaseCapt) { 
+      Enc8CompAUser = (Enc8CompA - Enc8PhaseCapt) / 4096;
+    } else {
+      Enc8CompAUser = (4294967296 - Enc8PhaseCapt + Enc8CompA) / 4096;
+    }
+  } else {
+    if(Enc8CompA <= Enc8PhaseCapt) { 
+      Enc8CompAUser = (Enc8CompA - Enc8PhaseCapt) / 4096;
+    } else {
+      Enc8CompAUser = (Enc8CompA - 4294967296 - Enc8PhaseCapt) / 4096;
+    }
+  }
+  
+  if(Enc8PulseB >= 0) {
+    if(Enc8CompB >= Enc8PhaseCapt) { 
+      Enc8CompBUser = (Enc8CompB - Enc8PhaseCapt) / 4096;
+    } else {
+      Enc8CompBUser = (4294967296 - Enc8PhaseCapt + Enc8CompB) / 4096;
+    }
+  } else {
+    if(Enc8CompB <= Enc8PhaseCapt) { 
+      Enc8CompBUser = (Enc8CompB - Enc8PhaseCapt) / 4096;
+    } else {
+      Enc8CompBUser = (Enc8CompB - 4294967296 - Enc8PhaseCapt) / 4096;
+    }
+  }
+  
+  Enc8CompAddUser = Enc8CompAdd / 4096;
+  Enc8CompAUser += Motor[8].ActPos - Motor[8].HomePos;
+  Enc8CompBUser += Motor[8].ActPos - Motor[8].HomePos;
+close

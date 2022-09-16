@@ -1,0 +1,6 @@
+/*
+open plc 8
+local result;
+call home_fe(7, &result);
+disable plc 8;
+close

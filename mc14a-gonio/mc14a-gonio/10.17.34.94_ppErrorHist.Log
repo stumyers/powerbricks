@@ -1,0 +1,9 @@
+[PMAC_HARDWARE]
+[PMAC_CONFIG]
+[PMAC_PROJECT]
+/var/ftp/usrflash/Project/PMAC Script Language/Libraries/pos_comp.pmc:10:1: warning: "Enc8PhaseCapt" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh:68:1: warning: this is the location of the previous definition
+/var/ftp/usrflash/Project/PMAC Script Language/Libraries/pos_comp.pmc:11:1: warning: "ForceEqu8Off" redefined
+/var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh:69:1: warning: this is the location of the previous definition
+[PMAC_PROJECT]
+[PMAC_PROJECT]

@@ -1,0 +1,2 @@
+make: Warning: File `../../../Bin/Debug/libplcc.so' has modification time 4.8e+08 s in the future
+make: *** No rule to make target `bgcplc.o', needed by `../../../Bin/Debug/libplcc.so'.  Stop.

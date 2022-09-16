@@ -1,0 +1,23 @@
+// Kill SmarActs when Idle
+open plc KillIdlePLC
+
+local Period = 0.5; // seconds
+local Timeout = 2.5;  // seconds
+local MotorNum;
+
+call timer(Period);
+
+MotorNum = 2;
+while(MotorNum <= 4) {
+  if(Motor[MotorNum].InPos && Motor[MotorNum].DesVelZero && Motor[MotorNum].AmpEna && VecRunning==0) {
+    MotorIdleTime(MotorNum) = MotorIdleTime(MotorNum) + Period;
+    if(MotorIdleTime(MotorNum) > Timeout) {
+      Ldata.Motor = MotorNum;
+      kill;
+    }
+  } else {
+    MotorIdleTime(MotorNum) = 0;
+  }
+  MotorNum = MotorNum + 1;
+}
+close

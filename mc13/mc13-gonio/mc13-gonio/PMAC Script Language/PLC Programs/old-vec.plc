@@ -1,0 +1,209 @@
+/*open plc VecPLC
+
+#define CS_NUM 1    // Coordinate System
+#define AXIS_S 1    // Shutter Rotation
+#define AXIS_X 5    // Gonio X
+#define AXIS_Y 3    // Pin Y
+#define AXIS_Z 4    // Pin Z
+#define AXIS_O 8    // Gonio Omega
+
+#define PROG_OSC    0
+#define PROG_VECTOR 1
+
+local SelectedProg;
+
+if((OscRunning == 1) || (VectorRunning == 1)) {
+  // Store selected program
+  if(OscRunning == 1) {
+    SelectedProg = PROG_OSC
+  } else {
+    SelectedProg = PROG_VECTOR
+  }
+  
+  // Reenable Pin Y and Pin Z
+  jog/3,4;
+  
+  DataAcqTooFast = 0;
+  DataAcqReady = 0;
+  
+  // Configure positions
+  if(OscRunning == 1) {
+    StartX = Motor[AXIS_X].Pos - Motor[AXIS_X].HomePos
+    StartY = Motor[AXIS_Y].Pos - Motor[AXIS_Y].HomePos
+    StartZ = Motor[AXIS_Z].Pos - Motor[AXIS_Z].HomePos
+    StartO = OscStartO
+    EndX = StartX
+    EndY = StartY
+    EndZ = StartZ
+    EndO = OscEndO
+    Duration = 1000*OscDuration
+  } else if(VectorRunning == 1) {
+    StartX = VectorStartX
+    StartY = VectorStartY
+    StartZ = VectorStartZ
+    StartO = VectorStartO
+    EndX = VectorEndX
+    EndY = VectorEndY
+    EndZ = VectorEndZ
+    EndO = VectorStartO + VectorNumSamples*VectorStepO
+    Duration = 1000*VectorNumSamples*VectorExposure
+  }
+  
+  if(DataAcqBackup==0) {
+      begin CS_NUM:simplevec
+      run CS_NUM
+  } else {  
+    // Calculate parameters
+  
+    // Shutter Change in Position
+    ShutterChgPos = ShutterOpenPos - ShutterClosedPos;
+
+    // Shutter Opening Time (ms)
+    ShutterTime = abs(ShutterChgPos)/ShutterSpeed;
+
+    // Acceleration (cts/ms^2)
+    AccelO = 1/(-Motor[AXIS_O].JogTa);
+    AccelX = 1/(-Motor[AXIS_X].JogTa);
+    AccelY = 1/(-Motor[AXIS_Y].JogTa);
+    AccelZ = 1/(-Motor[AXIS_Z].JogTa);
+
+    // Data acquisition distance
+    DataAcqO = EndO - StartO;
+    DataAcqX = EndX - StartX;
+    DataAcqY = EndY - StartY;
+    DataAcqZ = EndZ - StartZ;
+
+    // Desired Speed (ct/ms)
+    DesSpeedO = DataAcqO/Duration;
+    DesSpeedX = DataAcqX/Duration;
+    DesSpeedY = DataAcqY/Duration;
+    DesSpeedZ = DataAcqZ/Duration;
+      
+    if(abs(DesSpeedO) > Motor[AXIS_O].MaxSpeed) { DataAcqTooFast = 1; }
+    if(abs(DesSpeedX) > Motor[AXIS_X].MaxSpeed) { DataAcqTooFast = 1; }
+    if(abs(DesSpeedY) > Motor[AXIS_Y].MaxSpeed) { DataAcqTooFast = 1; }
+    if(abs(DesSpeedZ) > Motor[AXIS_Z].MaxSpeed) { DataAcqTooFast = 1; }
+      
+    if(DataAcqTooFast) {
+      OscRunning = 0
+      VectorRunning = 0
+      return;
+    }
+
+    // Time to Desired Speed
+    TimeToSpeedO = abs(DesSpeedO)/AccelO;
+    TimeToSpeedX = abs(DesSpeedX)/AccelX;
+    TimeToSpeedY = abs(DesSpeedY)/AccelY;
+    TimeToSpeedZ = abs(DesSpeedZ)/AccelZ;
+
+    TimeToSpeed = 0;
+    if(TimeToSpeedO > TimeToSpeed) { TimeToSpeed = TimeToSpeedO }
+    if(TimeToSpeedX > TimeToSpeed) { TimeToSpeed = TimeToSpeedX }
+    if(TimeToSpeedY > TimeToSpeed) { TimeToSpeed = TimeToSpeedY }
+    if(TimeToSpeedZ > TimeToSpeed) { TimeToSpeed = TimeToSpeedZ }
+
+    // Direction
+    if(StartO > EndO) { DirO = -1; } else { DirO = 1 }
+    if(StartX > EndX) { DirX = -1; } else { DirX = 1 }
+    if(StartY > EndY) { DirY = -1; } else { DirY = 1 }
+    if(StartZ > EndZ) { DirZ = -1; } else { DirZ = 1 }
+
+    // Speed up distance
+    SpeedUpO = DirO*AccelO*TimeToSpeedO*TimeToSpeedO/2;
+    SpeedUpX = DirX*AccelX*TimeToSpeedX*TimeToSpeedX/2;
+    SpeedUpY = DirY*AccelY*TimeToSpeedY*TimeToSpeedY/2;
+    SpeedUpZ = DirZ*AccelZ*TimeToSpeedZ*TimeToSpeedZ/2;
+
+    // Shutter Opening distance
+    ShutOpenO = DesSpeedO*ShutterTime;
+    ShutOpenX = DesSpeedX*ShutterTime;
+    ShutOpenY = DesSpeedY*ShutterTime;
+    ShutOpenZ = DesSpeedZ*ShutterTime;
+
+    // Shutter Lag distance
+    ShutLagO = DesSpeedO*ShutterLag;
+    ShutLagX = DesSpeedX*ShutterLag;
+    ShutLagY = DesSpeedY*ShutterLag;
+    ShutLagZ = DesSpeedZ*ShutterLag;
+
+    // Remaining shutter lag to wait
+    ShutLagRemO = 0;
+    ShutLagRemX = 0;
+    ShutLagRemY = 0;
+    ShutLagRemZ = 0;
+    if(ShutterLag > ShutterTime) {
+      ShutLagRemO = DesSpeedO*(ShutterLag - ShutterTime);
+      ShutLagRemX = DesSpeedX*(ShutterLag - ShutterTime);
+      ShutLagRemY = DesSpeedY*(ShutterLag - ShutterTime);
+      ShutLagRemZ = DesSpeedZ*(ShutterLag - ShutterTime);
+    }
+
+    // Total backup
+    BackO = SpeedUpO + ShutOpenO + ShutLagO;
+    BackX = SpeedUpX + ShutOpenX + ShutLagX;
+    BackY = SpeedUpY + ShutOpenY + ShutLagY;
+    BackZ = SpeedUpZ + ShutOpenZ + ShutLagZ;
+      
+    // Close Shutter
+    Ldata.coord = CS_NUM;
+    abs; rapid;
+    B(ShutterClosedPos);
+    call timer(0.01);
+    while (Motor[AXIS_S].DesVel != 0) {}
+    
+    // Backup motors
+    Ldata.coord = CS_NUM;
+    abs; rapid;
+    A(StartO - BackO) X(StartX - BackX) Y(StartY - BackY) Z(StartZ - BackZ);
+    call timer(0.01);
+    while (Motor[AXIS_O].DesVel != 0 || Motor[AXIS_X].DesVel != 0 || Motor[AXIS_Y].DesVel != 0 || Motor[AXIS_Z].DesVel != 0) {}
+
+    // Don't expose if not told to do so
+    if(DataAcqExpose == 0) {
+      ShutterChgPos = 0;
+    }    
+    
+    Gate3[0].Chan[0].EquWrite = $3;
+     
+    // Wait for second part
+    DataAcqGo = 0;
+    DataAcqReady = 1;
+    while(DataAcqGo==0 && (OscRunning || VectorRunning)) {}
+
+    // Run the motion program
+    if(OscRunning || VectorRunning) {
+      begin CS_NUM:vec
+      run CS_NUM
+    }
+      
+    DataAcqGo = 0;
+  }
+  
+  call timer(0.01);
+      
+  // Wait program to finish
+  if(SelectedProg == PROG_OSC) {
+    while(OscRunning && Coord[CS_NUM].ProgActive) {}
+  } else {
+    while(VectorRunning && Coord[CS_NUM].ProgActive) {}
+  }
+  
+  Gate3[0].Chan[0].EquWrite = $1;  
+  
+  // Check if the program was aborted
+  if(((SelectedProg == PROG_OSC)&&(OscRunning == 0)) || ((SelectedProg == PROG_VECTOR)&&(VectorRunning == 0))) {
+    abort CS_NUM; // Abort program
+  }
+  
+  DataAcqReady = 0;  
+  OscRunning = 0
+  VectorRunning = 0
+  
+  // Close shutter for good measure
+  abs; rapid;
+  B(ShutterClosedPos);
+  call timer(0.01);
+  while (Motor[AXIS_S].DesVel != 0) {}
+}
+
+close*/

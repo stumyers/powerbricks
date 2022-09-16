@@ -1,0 +1,4 @@
+Gate3[1].Chan[3].CompA = ((Motor[8].HomePos + StartO) % 1048576)*4096
+Gate3[1].Chan[3].CompB = ((Motor[8].HomePos + StartO + P1003/2) % 1048576)*4096
+Gate3[1].Chan[3].CompAdd = P1003*4096;
+Gate3[1].Chan[3].EquWrite = 1;

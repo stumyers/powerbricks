@@ -1,0 +1,11 @@
+open plc HomeShutterPLC
+Motor[1].ServoCtrl=0
+kill 1
+DAC1X9=-263
+call timer(0.5)
+Motor[1].Pos=0
+Motor[1].ServoCtrl=1
+JOG 1 = 0
+disable plc HomeShutterPLC
+close
+

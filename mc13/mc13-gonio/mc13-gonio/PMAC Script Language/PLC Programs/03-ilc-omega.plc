@@ -1,0 +1,23 @@
+// Iterative Learning Control for Omega Torque Compensation
+
+open plc ILCOmegaPLC
+
+// Zero current table:
+local it, NumZones, Span;
+
+NumZones = 900; // 900 Zones = 0.4 degree per zone
+Span = 20250*1024; // Total Span 
+
+
+Sys.CompEnable = 0;
+
+it = 0;
+while(it < NumZones) {
+  CompTable[0].Data[it] = 0;
+}
+
+
+
+
+disable plc ILCOmegaPLC
+close

@@ -1,0 +1,132 @@
+#define HG_IDLE       0
+#define HG_HOMING_X   1
+#define HG_HOMING_Y   2
+#define HG_HOMING_Z   3
+#define HG_HOMING_O   4
+#define HG_HOMING_PYZ 5
+#define HG_FAULT_X    6
+#define HG_FAULT_Z    7
+#define HG_FAULT_O    8
+#define HG_FAULT_PYZ  9
+
+open plc HomeGonioPLC
+
+HomeGonioState = HG_IDLE;
+
+// Start by phasing and homing X
+HomeGonioState = HG_HOMING_X;
+cmd"#5$"
+call timer(0.2)
+while(Motor[5].PhaseFound==0 && Motor[5].AmpFault==0) {}
+
+if(Motor[5].AmpFault) {
+  HomeGonioState = HG_FAULT_X;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+home 5;
+call timer(0.2);
+while(Motor[5].HomeInProgress==1) {}
+
+if(Motor[5].HomeComplete==0 || Motor[5].AmpEna==0) {
+  HomeGonioState = HG_FAULT_X;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+// Do manual phasing for Y
+HomeGonioState = HG_HOMING_Y
+Motor[6].IbBias = 2000
+cmd"#6out0"
+call timer(1)
+Motor[6].PhasePos = 0
+kill 6
+Motor[6].IbBias = 0
+Motor[6].PhaseFound = 1
+
+// Jog to the bottom end stop
+jog-6
+call timer(0.2)
+while(Motor[6].FeFatal==0) {}
+
+call timer(0.5)
+
+// Home to rotary ref mark
+home 6
+call timer(0.2)
+while(Motor[6].HomeInProgress==1) {}
+
+
+// Now phase and home Z
+HomeGonioState = HG_HOMING_Z;
+cmd"#7$"
+call timer(0.2)
+while(Motor[7].PhaseFound==0 && Motor[7].AmpFault==0) {}
+
+if(Motor[7].AmpFault) {
+  HomeGonioState = HG_FAULT_Z;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+home 7;
+call timer(0.2);
+while(Motor[7].HomeInProgress==1) {}
+
+if(Motor[7].HomeComplete==0 || Motor[7].AmpEna==0) {
+  HomeGonioState = HG_FAULT_Z;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+// Phase and home Omega
+HomeGonioState = HG_HOMING_O;
+cmd"#8$"
+call timer(0.2)
+while(Motor[8].PhaseFound==0 && Motor[8].AmpFault==0) {}
+
+if(Motor[8].AmpFault) {
+  HomeGonioState = HG_FAULT_O;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+home 8;
+call timer(0.2);
+while(Motor[8].HomeInProgress==1) {}
+
+if(Motor[8].HomeComplete==0 || Motor[8].AmpEna==0) {
+  HomeGonioState = HG_FAULT_O;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+// Finally, home the piezos
+HomeGonioState = HG_HOMING_PYZ;
+Motor[3].MinPos = 0
+Motor[3].MaxPos = 0
+Motor[4].MinPos = 0
+Motor[4].MaxPos = 0
+jog-3,4;
+call timer(0.2);
+while(Motor[3].FeFatal==0 && Motor[4].FeFatal==0) {}
+
+call timer(1);
+
+home 3,4;
+call timer(0.2);
+while(Motor[3].HomeInProgress==1 && Motor[4].HomeInProgress==1) {}
+
+call timer(0.5);
+
+if(Motor[3].HomeComplete==0 || Motor[4].HomeComplete==0) {
+  HomeGonioState = HG_FAULT_PYZ;
+  disable plc HomeGonioPLC;
+  return;
+}
+
+HomeGonioState = HG_IDLE;
+
+disable plc HomeGonioPLC
+close

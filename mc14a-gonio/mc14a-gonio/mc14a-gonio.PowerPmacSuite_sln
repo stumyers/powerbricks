@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# PowerPmacSuite Solution File, Format Version 10.00
+Project("{06B4A5CA-70C8-424B-9313-AD94C8F8E260}") = "mc14a-gonio(10.10.192.96:PowerPC,460EX)", "mc14a-gonio.ppproj", "{A66D38C4-BF81-4F96-ADD0-40190641E8B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A66D38C4-BF81-4F96-ADD0-40190641E8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66D38C4-BF81-4F96-ADD0-40190641E8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66D38C4-BF81-4F96-ADD0-40190641E8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66D38C4-BF81-4F96-ADD0-40190641E8B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

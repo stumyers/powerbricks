@@ -1,0 +1,84 @@
+// Axis 8: Spindle (Goniometer rotation, Omega)
+// NelsonAir Airbearing SP150
+
+#define O_POLES           48
+
+#define O_PEAK_CURR       9       // Amps RMS
+#define O_CONT_CURR       3       // Amps RMS
+#define O_TIME_AT_PEAK    1       // Seconds
+#define O_CTS_PER_REV     (1024*20250)
+#define O_CTS_PER_UNIT    (O_CTS_PER_REV/360)    // cts/deg
+#define O_PHASING_TIME    5000    // Milliseconds
+
+// Theoretical limit: Encoder limited: 3.6 MHz x4 = 14.4Mcts/s = 250 deg/s
+#define O_MAX_SPEED       240     // deg/s 
+#define O_JOG_SPEED       180     // deg/s
+
+// PWM Frequency
+// L = Inductance in Henry
+// R = Resistance in Ohms
+// Fpwm > 20*R / (2*pi*L)
+
+// For this motor: L = 0.00085  R = 6.7
+// Min PWM Freq = 25090.31 Hz
+
+// Fpwm = Fphase*(PwmFreqMult+1)/2
+// (for Fphase: 10kHz) PWM Frequency: 30 kHz
+PowerBrick[1].Chan[3].PwmFreqMult      = 5
+
+// Type of output
+BrickLV.Chan[7].TwoPhaseMode   = 0             // 0 -> Brush/Brushless motor
+
+//Motor[1].pLimits = PowerBrick[1].Chan[3].Status.a;
+Motor[8].pLimits         = 0                     // 0 -> Don't use limits
+Motor[8].AdcMask         = $FFFC0000             // 14-bit ADC
+Motor[8].AmpFaultLevel   = 1
+Motor[8].PhaseCtrl       = 4                     // 4 -> Enable phase control
+Motor[8].PhaseOffset     = 683                  // 683 or -683 -> 3 phases
+//Motor[8].PhaseOffset     = -683                  // 683 or -683 -> 3 phases LAB
+Motor[8].PwmSf           = 0.95*16384           // 95% of full voltage, sign must agree with PhaseOffset
+//Motor[8].PwmSf           = -0.95*16384           // LAB
+
+// Protection
+Motor[8].MaxDac          = O_PEAK_CURR / MAX_ADC * 32767 * 0.866;
+Motor[8].I2TSet          = O_CONT_CURR / MAX_ADC * 32767 * 0.866;
+Motor[8].I2tTrip         = (POW(Motor[8].MaxDac,2) - POW(Motor[8].I2TSet,2)) * O_TIME_AT_PEAK;
+Motor[8].WarnFeLimit     = 16000
+Motor[8].FatalFeLimit    = 32000
+Motor[8].InPosBand       = 1000
+
+// Phasing
+Motor[8].PhasePosSf          = 2048*(O_POLES/2)/(256*O_CTS_PER_REV)  // Rotary
+Motor[8].PhaseFindingTime    = O_PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+Motor[8].PhaseFindingDac     = 3 * Motor[8].I2TSet / 4
+Motor[8].AbsPhasePosOffset   = 2048 / 5
+
+// Current loop tuning
+Motor[8].IiGain      = 3
+Motor[8].IpfGain     = 3
+
+// Servo loop tuning
+Motor[8].Servo.Kp    = 0.6
+Motor[8].Servo.Kvfb  = 5
+Motor[8].Servo.Kvifb = 0
+Motor[8].Servo.Ki    = 0.005
+Motor[8].Servo.Kvff  = 2
+Motor[8].Servo.Kviff = 0
+Motor[8].Servo.Kaff  = 0
+Motor[8].Servo.Kfff  = 0
+
+// Speeds
+Motor[8].MaxSpeed    = O_MAX_SPEED*O_CTS_PER_UNIT/1000  // cts/ms
+Motor[8].JogSpeed    = O_JOG_SPEED*O_CTS_PER_UNIT/1000  // cts/ms
+//Motor[8].JogTa       = -0.005                           // 200 cts/ms^2
+//Motor[8].JogTa       = -0.1
+Motor[8].JogTa       = -0.02
+Motor[8].AbortTa     = Motor[8].JogTa
+Motor[8].JogTs       = 0
+Motor[8].InvAMax     = -Motor[8].JogTa
+Motor[8].InvDMax     = -Motor[8].JogTa
+Motor[8].InvJMax     = 0                                // Disable Jerk Checking
+Motor[8].HomeVel     = Motor[8].JogSpeed
+
+// Enable motor
+Motor[8].ServoCtrl   = 1

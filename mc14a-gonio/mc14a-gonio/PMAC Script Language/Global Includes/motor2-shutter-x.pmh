@@ -1,0 +1,72 @@
+// Axis 2: Shutter X
+// SmarAct SDC 2 + SmarAct stage
+// Max STEP frequency is 5 MHz
+
+#define SHUT_X_MAX_FREQ  4900000   // Step Frequency
+#define SHUT_X_STEP_INC  10        // Step Increment (nm)
+#define SHUT_X_MAX_SPEED 4         // mm/s
+#define SHUT_X_MIN_POS   -7        // mm
+#define SHUT_X_MAX_POS   7         // mm
+
+// BrickLV.Chan[1].TwoPhaseMode = 1 // 1 -> Stepper/Direct microstepping
+
+PowerBrick[0].Chan[1].PwmFreqMult = 1
+PowerBrick[0].Chan[1].TimerMode   = 3   // 3 -> PFM pulse counting
+PowerBrick[0].Chan[1].EncCtrl     = 3   // 3 -> x4 quadrature CW
+PowerBrick[0].Chan[1].PfmWidth    = 4   // Pulse width duration
+PowerBrick[0].Chan[1].OutputMode  = 8   // 8 -> Phase D is PFM
+PowerBrick[0].Chan[1].OutFlagD    = 1   // 1 -> Enable STEP and DIRECTIon connector
+PowerBrick[0].Chan[1].PfmFormat   = 0   // 0 -> Step and Direction mode
+PowerBrick[0].Chan[1].OutputPol   = 2   // 2 -> Non-inverted A, B, & C; inverted D
+PowerBrick[0].Chan[1].PfmDirPol   = 1   // 1 -> Positive direction provides a high output
+PowerBrick[0].Chan[1].CaptCtrl    = 1   // 1 -> Capture on Index (CHCn) high
+PowerBrick[0].Chan[1].PackOutData = 0
+PowerBrick[0].Chan[1].PackInData  = 0
+
+Motor[2].ServoCtrl   = 1                         // 1 -> Activate motor
+Motor[2].PhaseCtrl   = 0                         // 0 -> No phase control
+Motor[2].MaxSpeed    = SHUT_X_MAX_SPEED*1000/SHUT_X_STEP_INC   // um/ms
+Motor[2].JogSpeed    = Motor[2].MaxSpeed
+Motor[2].HomeVel     = Motor[2].MaxSpeed*0.8
+Motor[2].InvAMax     = 0.1
+Motor[2].InvDMax     = Motor[2].InvAMax
+Motor[2].JogTa       = 10
+Motor[2].JogTs       = 0
+Motor[2].pLimits     = 0                         // 0 -> No limits
+Motor[2].pAmpFault   = 0                         // 0 -> Ignore amplifier fault
+Motor[2].pEncLoss    = 0                         // 0 -> Disable encoder loss detection
+Motor[2].I2tSet      = 0                         // Disable current protection
+Motor[2].I2tTrip     = 0
+Motor[2].MaxDac      = SHUT_X_MAX_FREQ*pow(2, 16+PowerBrick[0].PfmClockDiv)/pow(10, 8)
+Motor[2].pDac        = PowerBrick[0].Chan[1].Pfm.a
+Motor[2].EncType     = 5                         // 5 -> Quadrature encoder, 1/T extension
+Motor[2].pEnc        = EncTable[2].a
+Motor[2].pEnc2       = EncTable[2].a
+Motor[2].PosSf       = 1
+Motor[2].Pos2Sf      = 1
+Motor[2].CaptureMode = 0                         // 0 -> Hardware Capture
+Motor[2].MinPos      = SHUT_X_MIN_POS*1000000/SHUT_X_STEP_INC
+Motor[2].MaxPos      = SHUT_X_MAX_POS*1000000/SHUT_X_STEP_INC
+Motor[2].HomeVel     = Motor[2].MaxSpeed
+
+Motor[2].Servo.Kp          = 0.15
+Motor[2].Servo.Kvfb        = 0
+Motor[2].Servo.Kvff        = 0
+Motor[2].Servo.Ki          = 0
+Motor[2].Servo.Kaff        = 0
+Motor[2].Servo.BreakPosErr = 1     // Deadband size (ct)
+Motor[2].Servo.Kbreak      = 0     // Gain inside deadband zone
+Motor[2].Servo.OutDbOn     = 0
+Motor[2].Servo.OutDbOff    = 0
+Motor[2].Servo.OutDbSeed   = 0
+Motor[2].InPosBand         = 2
+Motor[2].FatalFeLimit      = 10000
+
+EncTable[2].type        = 1                      // 1 -> Single 32 bit read
+EncTable[2].pEnc        = PowerBrick[0].Chan[1].ServoCapt.a
+EncTable[2].MaxDelta    = 0
+EncTable[2].index1      = 0
+EncTable[2].index2      = 0
+EncTable[2].index3      = 0
+EncTable[2].index4      = 0
+EncTable[2].ScaleFactor = 1/256

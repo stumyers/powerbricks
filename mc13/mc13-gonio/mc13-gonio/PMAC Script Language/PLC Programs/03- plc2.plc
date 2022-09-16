@@ -1,0 +1,13 @@
+/*
+open plc 2
+if((Coord[1].ProgActive)){
+  if((Coord[1].Program.Number)==(Prog[0].Number)) {
+    OscRunning = 1;
+  } else if((Coord[1].Program.Number)==Prog[1].Number) {
+    VectorRunning = 1;
+  }
+} else {
+  OscRunning = 0;
+  VectorRunning = 0;
+}
+close

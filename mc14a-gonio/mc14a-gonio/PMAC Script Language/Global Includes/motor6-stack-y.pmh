@@ -1,0 +1,112 @@
+// Axis 6: Stack Y
+// AeroTech Custom AVS Lift Stage
+// Stage: Custom AVS
+// Motor: BMS60-A
+
+// Nominal travel: 25mm
+// Current peak/cont (rms): 9.2 / 2.3
+// Poles: 8 (4 pairs)
+// 1000 Sinusoidal counts per rev (confirmed with ScaleFactor=1/16384)
+// Counts per revolution: 2,000,000 cts
+// Max Speed: 10,000,000 cts/sec = ? mm/sec
+// Accel: 1000 mm/s^2
+// Electrical Characteristics: MaxV = 340V, L = 1.3 mH, R = 8.4 ohms
+
+#define SY_POLE_PAIRS      4         // Number of pole pairs
+
+#define SY_PEAK_CURR       9.2       // Amps
+#define SY_CONT_CURR       2.3       // Amps
+#define SY_TIME_AT_PEAK    1         // Seconds
+#define SY_CTS_PER_REV     2000000   // cts
+#define SY_CTS_PER_UNIT    500       // cts/deg
+
+#define SY_MAX_SPEED       10        // mm/s
+#define SY_JOG_SPEED       8         // mm/s
+#define SY_HOME_SPEED      4         // mm/s
+#define SY_MAX_ACCEL       1000      // mm/s^2
+
+#define SY_PHASING_TIME    5000      // Milliseconds
+
+// PWM Frequency
+// L = Inductance in Henry
+// R = Resistance in Ohms
+// Fpwm > 20*R / (2*pi*L)
+
+// For this motor: 
+// L = 1.3 mH
+// R = 8.4 ohms
+// Min PWM Freq = 20567.71 Hz
+
+// Fpwm = Fphase*(PwmFreqMult+1)/2
+// (for Fphase: 10kHz) PWM Frequency: 20 kHz
+PowerBrick[1].Chan[1].PwmFreqMult = 3
+
+// Type of output
+BrickLV.Chan[5].TwoPhaseMode = 0                  // 0 -> Brushless motor
+
+// Hall Sensors
+//Motor[6].pAbsPhasePos = PowerBrick[1].Chan[1].Status.a
+//Motor[6].AbsPhasePosFormat = $400030C
+//Motor[6].AbsPosSF = -2048/12 // UVW transition 1->3 occurs in the neg direction
+//Motor[6].AbsPhasePosOffset = 2044
+
+// Sinusoidal encoder
+// With ScaleFactor = 1, 8e6 cts/mm
+EncTable[6].ScaleFactor       = 1
+Motor[6].EncType              = 6
+PowerBrick[1].Chan[1].AtanEna = 1
+PowerBrick[1].Chan[1].EncCtrl = 7
+
+//Motor[1].pLimits = PowerBrick[1].Chan[1].Status.a;
+Motor[6].pLimits         = 0                     // 0 -> Don't use limits
+Motor[6].AdcMask         = $FFFC0000             // 14-bit ADC
+Motor[6].AmpFaultLevel   = 1
+Motor[6].PhaseCtrl       = 4                     // 4 -> Enable phase control
+Motor[6].PhaseOffset     = 683                   // 683 -> Three Phases
+Motor[6].PwmSf           = 0.95*16384            // 95% of full voltage, sign must agree with PhaseOffset
+
+// Protection
+Motor[6].MaxDac       = SY_PEAK_CURR * SQRT(2) * 32768 * COSD(30) / MAX_ADC
+Motor[6].I2TSet       = SY_CONT_CURR * SQRT(2) * 32768 * COSD(30) / MAX_ADC
+Motor[6].I2tTrip      = (POW(Motor[6].MaxDac,2) - POW(Motor[6].I2TSet,2)) * SY_TIME_AT_PEAK;
+Motor[6].WarnFeLimit  = 64000
+Motor[6].FatalFeLimit = 128000
+Motor[6].InPosBand    = 1000
+
+// Phasing
+Motor[6].PhasePosSf        = 2048*SY_POLE_PAIRS/(1000*16384)
+Motor[6].PhaseFindingTime  = 0
+Motor[6].PhaseFindingDac   = 0
+Motor[6].AbsPhasePosOffset = 2048 / 5
+
+// Current loop tuning
+Motor[6].IiGain      = 1.8
+Motor[6].IpfGain     = 1.8
+Motor[6].IpbGain     = 0
+
+// Servo loop tuning
+Motor[6].Servo.Kp    = 0.045
+Motor[6].Servo.Kvfb  = 0.15
+Motor[6].Servo.Kvifb = 0
+Motor[6].Servo.Ki    = 0.02
+Motor[6].Servo.Kvff  = 0
+Motor[6].Servo.Kviff = 0
+Motor[6].Servo.Kaff  = 0
+Motor[6].Servo.Kfff  = 0
+
+// Speeds
+Motor[6].MaxSpeed    = SY_MAX_SPEED*SY_CTS_PER_UNIT/1000        // cts/ms
+Motor[6].JogSpeed    = SY_JOG_SPEED*SY_CTS_PER_UNIT/1000        // cts/ms
+Motor[6].HomeVel     = SY_HOME_SPEED*SY_CTS_PER_UNIT/1000       // cts/ms
+Motor[6].InvAMax     = 1000000/(SY_MAX_ACCEL*SY_CTS_PER_UNIT)   // ms^2/cts
+Motor[6].InvDMax     = Motor[6].InvAMax
+Motor[6].JogTa       = 0
+Motor[6].JogTs       = 250
+Motor[6].HomeVel     = Motor[6].JogSpeed
+
+Motor[6].MaxSpeed = 10e3
+Motor[6].JogSpeed = 10e3
+Motor[6].HomeVel  = Motor[6].JogSpeed
+
+// Enable motor
+Motor[6].ServoCtrl   = 1

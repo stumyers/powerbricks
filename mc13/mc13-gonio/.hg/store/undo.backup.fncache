@@ -1,0 +1,60 @@
+data/mc13-gonio/PMAC Script Language/Global Includes/motor4-pin-z.pmh.i
+data/mc13-gonio/PMAC Script Language/Motion Programs/simplevec.pmc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor1-spindle.pmh.i
+data/mc13-gonio/USERCODE_INIFile.ini.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor8-pin-z.pmh.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/03-ilc-omega.plc.i
+data/mc13-gonio/PMAC Script Language/Libraries/home_fe.pmc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor6-spindle-aerotech.pmh.i
+data/mc13-gonio/mc13-gonio.ppproj.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/plc8.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor2-shutter-x.pmh.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor8-spindle.pmh.i
+data/mc13-gonio/PMAC Script Language/Motion Programs/osc.pmc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor7-pin-y.pmh.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/99-sine_enc_offsets.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor7-stack-z.pmh.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/07-kill-idle.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor5-stack-z.pmh.i
+data/mc13-gonio/Configuration/pp_inc_disable.txt.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/03- plc2.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor3-pin-y.pmh.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor8-shutter-rot.pmh.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/plc2.plc.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/04- plc8.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/global_definitions.pmh.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor5-stack-x.pmh.i
+data/mc13-gonio/PMAC Script Language/Motion Programs/vector.pmc.i
+data/mc13-gonio/Configuration/pp_disable.txt.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/13-home_sy.plc.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/08-home_shutter.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor6-stack-y.pmh.i
+data/mc13-gonio/C Language/Background Programs/gather_server/gather_server.c.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor4-stack-y.pmh.i
+data/mc13-gonio/C Language/Include/pp_proj.h.i
+data/mc13-gonio/PMAC Script Language/Libraries/sync_vec_pos.pmc.i
+data/mc13-gonio/PMAC Script Language/Motion Programs/vec.pmc.i
+data/mc13-gonio/Configuration/pp_proj.ini.i
+data/mc13-gonio/C Language/Background Programs/capp1/capp1.h.i
+data/mc13-gonio/C Language/CPLCs/bgcplc00/bgcplc.c.i
+data/mc13-gonio/PMAC Script Language/Libraries/calc_vec_vars.pmc.i
+data/mc13-gonio/Configuration/pp_save.cfg.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/02-vec.plc.i
+data/mc13-gonio/Configuration/pp_inc_startup.txt.i
+data/mc13-gonio/PMAC Script Language/Libraries/timer.pmc.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/01-poweronreset.plc.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor3-stack-x.pmh.i
+data/mc13-gonio/C Language/Realtime Routines/usrcode.c.i
+data/mc13-gonio/Documentation/note.txt.i
+data/.hgignore.i
+data/mc13-gonio/Configuration/pp_custom_save.tpl.i
+data/mc13-gonio/PMAC Script Language/PLC Programs/old-vec.plc.i
+data/mc13-gonio/Configuration/pp_startup.txt.i
+data/mc13-gonio/C Language/CPLCs/rticplc/rticplc.c.i
+data/mc13-gonio/Configuration/pp_custom_save.cfg.i
+data/mc13-gonio/C Language/Realtime Routines/usrcode.h.i
+data/mc13-gonio/PMAC Script Language/Global Includes/motor6-spindle.pmh.i
+data/mc13-gonio/PMAC Script Language/Motion Programs/raster.pmc.i
+data/mc13-gonio.PowerPmacSuite_sln.i
+data/mc13-gonio/C Language/Background Programs/capp1/capp1.c.i

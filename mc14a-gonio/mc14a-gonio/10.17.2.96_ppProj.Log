@@ -1,0 +1,124 @@
+[PMAC_HARDWARE]
+Gate1AutoDetect=0x0
+Gate2AutoDetect=0x0
+Gate3AutoDetect=0x3
+CardIOAutoDetect=0x3
+CardDPRAutoDetect=0x0
+Success: Loading usralgo.ko
+Warning: Loading RT Address of CfromScript
+Success: Loading RT Address of CaptCompISR
+[PMAC_CONFIG]
+// *** EOF 
+Successful Configuration using "/var/ftp/usrflash/Project/Configuration/pp_save.cfg"
+// *** EOF 
+Successful Custom Configuration using "/var/ftp/usrflash/Project/Configuration/pp_custom_save.cfg"
+[PMAC_PROJECT]
+Start of Project Loading using INI File: "/var/ftp/usrflash/Project/Configuration/pp_proj.ini"
+Success: Loading usralgo.ko
+Warning: Loading RT Address of CfromScript
+Success: Loading RT Address of CaptCompISR
+Including Project File: /var/ftp/usrflash/Project/Configuration/pp_disable.txt 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-spindle.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/osc.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/simplevec.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/vec.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/01-poweronreset.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/03-home_gonio.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/08-home_shutter.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/13-home_sy.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/99-sine_enc_offsets.plc 
+Including Project File: /var/ftp/usrflash/Project/Configuration/pp_startup.txt 
+124 Project Symbols were created for gpascii -2 communication
+Status: Successful load of preprocessed File: "/var/ftp/usrflash/Temp/pp_proj.pma"
+No Linux Program to run: /var/ftp/usrflash/Project/C Language/Background Programs/capp1.out 
+[PMAC_PROJECT]
+Start of Project Loading using INI File: "/var/ftp/usrflash/Project/Configuration/pp_proj.ini"
+Success: Loading usralgo.ko
+Warning: Loading RT Address of CfromScript
+Success: Loading RT Address of CaptCompISR
+LoadRTUserCode() Delta Time (sec) = 1.076805
+Including Project File: /var/ftp/usrflash/Project/Configuration/pp_disable.txt 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-spindle.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/osc.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/simplevec.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/vec.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/01-poweronreset.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/03-home_gonio.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/08-home_shutter.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/13-home_sy.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/99-sine_enc_offsets.plc 
+Including Project File: /var/ftp/usrflash/Project/Configuration/pp_startup.txt 
+Status: Pass 1 Create debug file, #defines, *.h & .sym files, Time (sec) = 0.146661
+Status: Pass 2 Verify prog calls, local stack & labels, Time (sec)  = 0.009488
+124 Project Symbols were created for gpascii -2 communication
+Status: Create PPMAC Symbol Table & Run CPP Time (sec) = 0.308435
+Status: Successful load of preprocessed File: "/var/ftp/usrflash/Temp/pp_proj.pma"
+Status: Download to PPMAC Command Processor, Time (sec) = 0.012809
+No Linux Program to run: /var/ftp/usrflash/Project/C Language/Background Programs/capp1.out 
+Status: Final pp_proj.h & Run Background C Apps, Time (sec) = 0.726103
+Project Preprocessing & Load Total Time (sec) = 2.280933
+[PMAC_PROJECT]
+Start of Project Loading using INI File: "/var/ftp/usrflash/Project/Configuration/pp_proj.ini"
+Success: Loading usralgo.ko
+Warning: Loading RT Address of CfromScript
+Warning: Loading RT Address of CaptCompISR
+LoadRTUserCode() Delta Time (sec) = 1.076385
+Including Project File: /var/ftp/usrflash/Project/Configuration/pp_disable.txt 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/global_definitions.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor1-shutter-rot.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor2-shutter-x.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor3-pin-y.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor4-pin-z.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x-mult-box.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor5-stack-x.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor6-stack-y.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor7-stack-z.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Global Includes/motor8-spindle.pmh 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/calc_vec_vars.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/pos_comp.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/sync_vec_pos.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Libraries/timer.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/Motion Programs/vec.pmc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/01-poweronreset.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/02-vec.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/03-home_gonio.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/07-kill-idle.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/08-home_shutter.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/13-home_sy.plc 
+Including Project File: /var/ftp/usrflash/Project/PMAC Script Language/PLC Programs/99-sine_enc_offsets.plc 
+Including Project File: /var/ftp/usrflash/Project/Configuration/pp_startup.txt 
+Status: Pass 1 Create debug file, #defines, *.h & .sym files, Time (sec) = 0.110233
+Status: Pass 2 Verify prog calls, local stack & labels, Time (sec)  = 0.010191
+141 Project Symbols were created for gpascii -2 communication
+Status: Create PPMAC Symbol Table & Run CPP Time (sec) = 0.376770
+Status: Successful load of preprocessed File: "/var/ftp/usrflash/Temp/pp_proj.pma"
+Status: Download to PPMAC Command Processor, Time (sec) = 0.012322
+No Linux Program to run: /var/ftp/usrflash/Project/C Language/Background Programs/capp1.out 
+Status: Final pp_proj.h & Run Background C Apps, Time (sec) = 0.787957
+Project Preprocessing & Load Total Time (sec) = 2.374329

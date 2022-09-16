@@ -1,0 +1,105 @@
+// Axis 5: Stack X
+// AeroTech ABL1500 Linear Stage
+// Stage: ABL15005-M-10-NC-LN50AS
+// Motor: BLMC-192-A
+
+// Nominal travel: 50 mm
+// Current peak/cont (rms): 16.40 / 2.83
+// Pole Pitch: 25 mm pitch, 50 mm cycle
+// Electrical Characteristics: MaxV = 340V, L = 1.9 mH, R = 6.4 ohms
+
+#define MOTOR     Motor[5]
+#define ENCODER   EncTable[5]
+#define GATE      Gate3[1]
+#define CHANNEL   GATE.Chan[0]
+#define LVCHANNEL BrickLV.Chan[4]
+
+#define ECL             50         // Electrical Cycle (mm)
+#define RES             0.000002
+#define CTS_PER_UNIT    500000
+
+#define MAX_ADC         33.85     // Amps
+#define MAX_VOLTAGE     340
+#define PEAK_CURR       16.40     // Amps RMS
+#define CONT_CURR       2.83      // Amps RMS
+#define TIME_AT_PEAK    1         // Seconds
+
+#define MAX_SPEED       10        // mm/s
+#define JOG_SPEED       8         // mm/s
+#define HOME_SPEED      4         // mm/s
+#define MAX_ACCEL       1000      // mm/s^2
+
+#define PHASING_TIME    50        // Milliseconds
+
+// PWM Frequency
+// L = Inductance in Henry
+// R = Resistance in Ohms
+// Fpwm > 20*R / (2*pi*L)
+
+// For this motor: 
+// L = 1.9 mH
+// R = 6.7 ohms
+// Min PWM Freq = 11224.6 Hz
+
+// Fpwm = Fphase*(PwmFreqMult+1)/2
+// (for Fphase: 10kHz) PWM Frequency: 15 kHz
+CHANNEL.PwmFreqMult      = 2
+
+// Type of output
+LVCHANNEL.TwoPhaseMode   = 0                  // 0 -> Brush/Brushless motor
+
+//Motor[1].pLimits = CHANNEL.Status.a;
+MOTOR.pLimits         = 0                     // 0 -> Don't use limits
+MOTOR.AdcMask         = $FFFC0000             // 14-bit ADC
+MOTOR.AmpFaultLevel   = 1
+MOTOR.PhaseCtrl       = 4                     // 4 -> Enable phase control
+MOTOR.PhaseOffset     = 683                   // 683 or -683 -> 3 phases
+
+// Sinusoidal Encoder
+CHANNEL.AtanEna = 0
+MOTOR.PhasePosSf = 2048*RES/(256*ECL);
+
+// If MOTOR VOLTAGE >= BUS VOLTAGE (48V)
+MOTOR.PwmSf           = 0.95*16384            // 95% of full voltage, sign must agree with PhaseOffset
+// Else
+// MOTOR.PwmSf         = MOTOR_VOLTAGE/BUS_VOLTAGE*0.95*16384
+
+// Protection
+MOTOR.MaxDac          = PEAK_CURR / MAX_ADC * 32767 * 0.866;
+MOTOR.I2TSet          = CONT_CURR / MAX_ADC * 32767 * 0.866;
+MOTOR.I2tTrip         = (POW(MOTOR.MaxDac,2) - POW(MOTOR.I2TSet,2)) * TIME_AT_PEAK;
+MOTOR.WarnFeLimit     = 16000
+MOTOR.FatalFeLimit    = 32000
+MOTOR.InPosBand       = 1000
+
+// Phasing
+MOTOR.PhaseFindingTime    = PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+MOTOR.PhaseFindingDac     = MOTOR.I2TSet / 2
+MOTOR.AbsPhasePosOffset   = 2048 / 5
+
+// Current loop tuning (with no load)
+MOTOR.IiGain      = 1.6
+MOTOR.IpfGain     = 3
+
+// Servo loop tuning (with no load)
+MOTOR.Servo.Kp    = 0.3
+MOTOR.Servo.Kvfb  = 3
+MOTOR.Servo.Kvifb = 0
+MOTOR.Servo.Ki    = 0
+MOTOR.Servo.Kvff  = 3
+MOTOR.Servo.Kviff = 0
+MOTOR.Servo.Kaff  = 0
+MOTOR.Servo.Kfff  = 0
+
+// Speeds
+MOTOR.MaxSpeed    = MAX_SPEED*CTS_PER_UNIT/1000        // cts/ms
+MOTOR.JogSpeed    = JOG_SPEED*CTS_PER_UNIT/1000        // cts/ms
+MOTOR.HomeVel     = HOME_SPEED*CTS_PER_UNIT/1000       // cts/ms
+MOTOR.InvAMax     = 1000000/(MAX_ACCEL*CTS_PER_UNIT)   // ms^2/cts
+MOTOR.InvDMax     = MOTOR.InvAMax
+MOTOR.JogTa       = -MOTOR.InvAMax                     // ms^2/cts
+MOTOR.JogTs       = 0
+MOTOR.HomeVel     = MOTOR.JogSpeed
+
+// Enable motor
+MOTOR.ServoCtrl   = 1

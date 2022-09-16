@@ -1,0 +1,47 @@
+open prog osc
+
+Gather.Enable = 2;
+dwell 0;
+
+inc;
+
+// Bring everyone up to desired speed
+pvt(VecMaxTimeToSpeed);
+A(VecSpeedUpDist(3)):(VecDesSpeed(3));
+
+if(VecBufferTime > 0) {
+  // Stay at constant speed for a while
+  pvt(VecBufferTime);
+  A(VecBufferDist(3)):(VecDesSpeed(3));
+}
+
+// Open the shutter while everyone is moving
+pvt(VecShutTime);
+B(VecShutChgPos):0 A(VecShutOpenDist(3)):(VecDesSpeed(3));
+
+// Wait shutter lag
+pvt(ShutterLag);
+A(VecShutLagDist(3)):(VecDesSpeed(3));
+
+// Data acquisition
+pvt(VecDataAcqDuration-ShutterLag);
+//pvt(VecDataAcqDuration+(100*ShutterLag));
+A(VecDataAcqDist(3)-VecShutLagDist(3)):(VecDesSpeed(3));
+
+// Close shutter while still acquiring
+pvt(VecShutTime);
+B(-VecShutChgPos):0 A(VecShutOpenDist(3)):(VecDesSpeed(3));
+
+// Wait shutter lag
+pvt(ShutterLag);
+A(VecShutLagDist(3)):(VecDesSpeed(3));
+
+// Stop everyone
+pvt(VecMaxTimeToSpeed);
+A(VecSpeedUpDist(3)):0;
+dwell 0;
+
+Gather.Enable = 0;
+dwell 0;
+
+close

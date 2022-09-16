@@ -1,0 +1,113 @@
+// Axis 7: Stack Z
+// AeroTech ANT180 Linear Stage
+// Stage: ANT180-160-L-LTAS
+// Motor: BLM-142-A
+
+// Nominal travel: 160 mm
+// Current peak/cont (rms): 13.75 / 2.19
+// Pole Pitch: 30.48 mm pitch, 60.96 mm cycle
+// Sinusoidal Counts per mm: 50 (confirmed with ScaleFactor = 1/16384
+
+// Counts per cycle: 6,096,000
+// Encoder resolution: 10 nm = 0.00001 mm
+// Max Speed: 1,000,000 cts/sec = 10 mm/sec
+// Accel: 1000 mm/s^2
+// Electrical Characteristics: MaxV = 340V, L = 1.9 mH, R = 6.4 ohms
+
+#define SZ_ECL             60.96      // Electrical Cycle (mm)
+#define SZ_CTS_PER_MM      50         // Observerd with EncTable[7].ScaleFactor=1/16384
+#define SZ_ENC_SCALE       2000       // 50*2000 = 100000 cts/mm
+#define SZ_CTS_PER_ECL     (SZ_ECL*SZ_CTS_PER_MM*16384)
+#define SZ_CTS_PER_UNIT    (SZ_CTS_PER_MM*SZ_ENC_SCALE)
+
+#define SZ_PEAK_CURR       13.75     // Amps RMS
+#define SZ_CONT_CURR       2.19      // Amps RMS
+#define SZ_TIME_AT_PEAK    1         // Seconds
+//#define SZ_CTS_PER_UNIT    100000    // cts/mm
+
+#define SZ_MAX_SPEED       5         // mm/s
+#define SZ_JOG_SPEED       4         // mm/s
+#define SZ_HOME_SPEED      0.4       // mm/s
+#define SZ_MAX_ACCEL       1000      // mm/s^2
+
+#define SZ_PHASING_TIME    50        // Milliseconds
+
+// PWM Frequency
+// L = Inductance in Henry
+// R = Resistance in Ohms
+// Fpwm > 20*R / (2*pi*L)
+
+// For this motor: 
+// L = 8.7 mH = 0.0087  
+// R = 10.9 ohms
+// Min PWM Freq = 3988.02 Hz
+
+// Fpwm = Fphase*(PwmFreqMult+1)/2
+// (for Fphase: 10kHz) PWM Frequency: 5 kHz
+PowerBrick[1].Chan[2].PwmFreqMult = 0
+
+// Type of output
+BrickLV.Chan[6].TwoPhaseMode = 0             // 0 -> Brush/Brushless motor
+
+//Motor[1].pLimits = PowerBrick[1].Chan[2].Status.a;
+Motor[7].pLimits         = 0                     // 0 -> Don't use limits
+Motor[7].AdcMask         = $FFFC0000             // 14-bit ADC
+Motor[7].AmpFaultLevel   = 1
+Motor[7].PhaseCtrl       = 4                     // 4 -> Enable phase control
+Motor[7].PhaseOffset     = 683                   // 683 or -683 -> 3 phases
+
+// Sinusoidal Encoder
+EncTable[7].ScaleFactor = SZ_ENC_SCALE/16384
+Motor[7].EncType = 6
+PowerBrick[1].Chan[2].AtanEna = 1
+Motor[7].PhasePosSf = 2048/SZ_CTS_PER_ECL
+PowerBrick[1].Chan[2].EncCtrl = 3
+
+// If Motor[7] VOLTAGE >= BUS VOLTAGE (48V)
+Motor[7].PwmSf           = 0.95*16384            // 95% of full voltage, sign must agree with PhaseOffset
+// Else
+// Motor[7].PwmSf         = MOTOR_VOLTAGE/BUS_VOLTAGE*0.95*16384
+
+// Protection
+Motor[7].MaxDac          = SZ_PEAK_CURR / MAX_ADC * 32767 * 0.866;
+Motor[7].I2TSet          = SZ_CONT_CURR / MAX_ADC * 32767 * 0.866;
+Motor[7].I2tTrip         = (POW(Motor[7].MaxDac,2) - POW(Motor[7].I2TSet,2)) * SZ_TIME_AT_PEAK;
+Motor[7].WarnFeLimit     = 16000
+Motor[7].FatalFeLimit    = 32000
+Motor[7].InPosBand       = 1000
+
+// Phasing
+Motor[7].PhaseFindingTime    = SZ_PHASING_TIME * 0.5 / (Sys.ServoPeriod * (Sys.RtIntPeriod + 1))
+Motor[7].PhaseFindingDac     = Motor[7].I2TSet / 2
+Motor[7].AbsPhasePosOffset   = 2048 / 5
+
+// Current loop tuning
+Motor[7].IiGain      = 2
+Motor[7].IpfGain     = 4.9
+
+// Servo loop tuning
+Motor[7].Servo.Kp    = 0.05
+Motor[7].Servo.Kvfb  = 3.5
+Motor[7].Servo.Kvifb = 0
+Motor[7].Servo.Ki    = 0.002
+Motor[7].Servo.Kvff  = 3.5
+Motor[7].Servo.Kviff = 0
+Motor[7].Servo.Kaff  = 0
+Motor[7].Servo.Kfff  = 0
+
+// Speeds
+Motor[7].MaxSpeed    = SZ_MAX_SPEED*SZ_CTS_PER_UNIT/1000        // cts/ms
+Motor[7].JogSpeed    = SZ_JOG_SPEED*SZ_CTS_PER_UNIT/1000        // cts/ms
+Motor[7].HomeVel     = SZ_HOME_SPEED*SZ_CTS_PER_UNIT/1000       // cts/ms
+Motor[7].InvAMax     = 1000000/(SZ_MAX_ACCEL*SZ_CTS_PER_UNIT)   // ms^2/cts
+Motor[7].InvDMax     = Motor[7].InvAMax
+Motor[7].JogTa       = -Motor[7].InvAMax                     // ms^2/cts
+Motor[7].JogTs       = 0
+Motor[7].HomeVel     = -Motor[7].JogSpeed
+
+// Enable motor
+Motor[7].ServoCtrl   = 1
+
+// Sinusoidal Encoder ADC offsets
+PowerBrick[1].Chan[2].AdcOffset[0] = -83427328
+PowerBrick[1].Chan[2].AdcOffset[1] = -99352576

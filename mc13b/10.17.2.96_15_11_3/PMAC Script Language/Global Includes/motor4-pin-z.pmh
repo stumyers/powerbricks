@@ -1,0 +1,80 @@
+// Axis 4: Pin Z
+// SmarAct SDC 2 + SmarAct stage
+// Max STEP frequency is 5 MHz
+
+#define PZ_MAX_FREQ  4900000   // Step Frequency
+#define PZ_STEP_INC  10        // Step Increment (nm)
+#define PZ_MAX_SPEED 4         // mm/s
+#define PZ_MIN_POS   -4        // mm
+#define PZ_MAX_POS   4         // mm
+
+// BrickLV.Chan[3].TwoPhaseMode = 1 // 1 -> Stepper/Direct microstepping
+
+PowerBrick[0].Chan[3].PwmFreqMult = 1
+PowerBrick[0].Chan[3].TimerMode   = 3   // 3 -> PFM pulse counting
+PowerBrick[0].Chan[3].EncCtrl     = 3   // 3 -> x4 quadrature CW
+PowerBrick[0].Chan[3].PfmWidth    = 4   // Pulse width duration
+PowerBrick[0].Chan[3].OutputMode  = 8   // 8 -> Phase D is PFM
+PowerBrick[0].Chan[3].OutFlagD    = 1   // 1 -> Enable STEP and DIRECTIon connector
+PowerBrick[0].Chan[3].PfmFormat   = 0   // 0 -> Step and Direction mode
+PowerBrick[0].Chan[3].OutputPol   = 2   // 2 -> Non-inverted A, B, & C; inverted D
+PowerBrick[0].Chan[3].PfmDirPol   = 1   // 1 -> Positive direction provides a high output
+PowerBrick[0].Chan[3].CaptCtrl    = 1   // 1 -> Capture on Index (CHCn) high
+PowerBrick[0].Chan[3].PackOutData = 0
+PowerBrick[0].Chan[3].PackInData  = 0
+
+Motor[4].ServoCtrl   = 1                         // 1 -> Activate motor
+Motor[4].PhaseCtrl   = 0                         // 0 -> No phase control
+Motor[4].MaxSpeed    = PZ_MAX_SPEED*1000/PZ_STEP_INC   // um/ms
+Motor[4].JogSpeed    = Motor[4].MaxSpeed
+Motor[4].HomeVel     = Motor[4].MaxSpeed*0.8
+Motor[4].InvAMax     = 0.1
+Motor[4].InvDMax     = Motor[4].InvAMax
+Motor[4].JogTa       = 10
+Motor[4].JogTs       = 0
+Motor[4].pLimits     = 0                         // 0 -> No limits
+Motor[4].pAmpFault   = 0                         // 0 -> Ignore amplifier fault
+Motor[4].pEncLoss    = 0                         // 0 -> Disable encoder loss detection
+Motor[4].I2tSet      = 0                         // Disable current protection
+Motor[4].I2tTrip     = 0
+Motor[4].MaxDac      = PZ_MAX_FREQ*pow(2, 16+PowerBrick[0].PfmClockDiv)/pow(10, 8)
+Motor[4].pDac        = PowerBrick[0].Chan[3].Pfm.a
+Motor[4].EncType     = 5                         // 5 -> Quadrature encoder, 1/T extension
+Motor[4].pEnc        = EncTable[4].a
+Motor[4].pEnc2       = EncTable[4].a
+Motor[4].PosSf       = 1
+Motor[4].Pos2Sf      = 1
+Motor[4].CaptureMode = 0                         // 0 -> Hardware Capture
+Motor[4].MinPos      = PZ_MIN_POS*1000000/PZ_STEP_INC
+Motor[4].MaxPos      = PZ_MAX_POS*1000000/PZ_STEP_INC
+Motor[4].HomeVel     = Motor[4].MaxSpeed
+Motor[4].AbortTa     = 0
+
+Motor[4].Servo.Kp          = 0.15
+Motor[4].Servo.Kvfb        = 0
+Motor[4].Servo.Kvff        = 13
+Motor[4].Servo.Ki          = 0
+Motor[4].Servo.Kaff        = 0
+Motor[4].Servo.BreakPosErr = 1     // Deadband size (ct)
+Motor[4].Servo.Kbreak      = 0     // Gain inside deadband zone
+Motor[4].Servo.OutDbOn     = 0
+Motor[4].Servo.OutDbOff    = 0
+Motor[4].Servo.OutDbSeed   = 0
+Motor[4].InPosBand         = 2
+Motor[4].FatalFeLimit      = 10000
+
+EncTable[4].type        = 1                      // 1 -> Single 32 bit read
+EncTable[4].pEnc        = PowerBrick[0].Chan[3].ServoCapt.a
+EncTable[4].MaxDelta    = 0
+EncTable[4].index1      = 0
+EncTable[4].index2      = 0
+EncTable[4].index3      = 0
+EncTable[4].index4      = 0
+EncTable[4].ScaleFactor = 1/256
+
+Motor[4].JogTa       = -2.5e-4
+Motor[4].JogTs       = 0
+Motor[4].AbortTa     = Motor[4].JogTa
+Motor[4].InvAMax     = -Motor[4].JogTa
+Motor[4].InvDMax     = -Motor[4].JogTa
+Motor[4].InvJmax     = 0
